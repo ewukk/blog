@@ -100,7 +100,7 @@ class PostRepository extends ServiceEntityRepository
     }
 
     /**
-     * Count tasks by category.
+     * Count posts by category.
      *
      * @param Category $category Category
      *

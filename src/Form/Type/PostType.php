@@ -74,7 +74,7 @@ class PostType extends AbstractType
             'tags',
             TextType::class,
             [
-                'label' => 'Tags',
+                'label' => 'label.tags',
                 'required' => false,
                 'attr' => ['max_length' => 128],
             ]
