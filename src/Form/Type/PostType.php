@@ -74,11 +74,18 @@ class PostType extends AbstractType
             'tags',
             TextType::class,
             [
-                'label' => 'label.tags',
+                'label' => 'Tags',
                 'required' => false,
                 'attr' => ['max_length' => 128],
             ]
         );
+        $builder->add(
+            'content',
+            TextType::class,
+            [
+                'label' => 'Content',
+                'required' => true,
+            ]);
 
         $builder->get('tags')->addModelTransformer(
             $this->tagsDataTransformer
