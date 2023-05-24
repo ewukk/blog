@@ -53,7 +53,7 @@ class PostType extends AbstractType
             'title',
             TextType::class,
             [
-                'label' => 'Title',
+                'label' => 'label.title',
                 'required' => true,
                 'attr' => ['max_length' => 255],
             ]);
@@ -65,8 +65,8 @@ class PostType extends AbstractType
                 'choice_label' => function ($category): string {
                     return $category->getTitle();
                 },
-                'label' => 'Category',
-                'placeholder' => 'none',
+                'label' => 'label.category',
+                'placeholder' => 'label.none',
                 'required' => true,
             ]
         );
@@ -74,18 +74,11 @@ class PostType extends AbstractType
             'tags',
             TextType::class,
             [
-                'label' => 'Tags',
+                'label' => 'label.tags',
                 'required' => false,
                 'attr' => ['max_length' => 128],
             ]
         );
-        $builder->add(
-            'content',
-            TextType::class,
-            [
-                'label' => 'Content',
-                'required' => true,
-            ]);
 
         $builder->get('tags')->addModelTransformer(
             $this->tagsDataTransformer

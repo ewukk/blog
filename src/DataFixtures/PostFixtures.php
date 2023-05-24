@@ -8,6 +8,7 @@ namespace App\DataFixtures;
 use App\Entity\Category;
 use App\Entity\Enum\PostStatus;
 use App\Entity\Post;
+use App\Entity\Tag;
 use App\Entity\User;
 use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
