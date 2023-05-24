@@ -30,7 +30,7 @@ class PostFixtures extends AbstractBaseFixtures implements DependentFixtureInter
             return;
         }
 
-        $this->createMany(100, 'posts', function (int $i) {
+        $this->createMany(10, 'posts', function (int $i) {
             $post = new Post();
             $post->setTitle($this->faker->sentence);
             $post->setContent($this->faker->sentence);
