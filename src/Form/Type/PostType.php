@@ -7,6 +7,7 @@ namespace App\Form\Type;
 
 use App\Entity\Category;
 use App\Entity\Post;
+use App\Entity\User;
 use App\Form\DataTransformer\TagsDataTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -64,6 +65,19 @@ class PostType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => function ($category): string {
                     return $category->getTitle();
+                },
+                'label' => 'label.category',
+                'placeholder' => 'label.none',
+                'required' => true,
+            ]
+        );
+        $builder->add(
+            'author',
+            EntityType::class,
+            [
+                'class' => User::class,
+                'choice_label' => function ($user): string {
+                    return $user->getUsername();
                 },
                 'label' => 'label.category',
                 'placeholder' => 'label.none',

@@ -6,6 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Entity\User;
 use App\Form\Type\PostType;
 use App\Service\PostServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -82,10 +83,13 @@ class PostController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/create', name: 'post_create', methods: 'GET|POST', )]
+    #[Route('/create', name: 'post_create', methods: 'GET|POST')]
     public function create(Request $request): Response
     {
+        /** @var User $user */
+        $user = $this->getUser();
         $post = new Post();
+        $post->setAuthor($user);
         $form = $this->createForm(
             PostType::class,
             $post,
@@ -104,7 +108,10 @@ class PostController extends AbstractController
             return $this->redirectToRoute('post_index');
         }
 
-        return $this->render('post/create.html.twig',  ['form' => $form->createView()]);
+        return $this->render(
+            'post/create.html.twig',
+            ['form' => $form->createView()]
+        );
     }
 
     /**

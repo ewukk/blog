@@ -6,7 +6,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
-use App\Entity\Enum\PostStatus;
 use App\Entity\Post;
 use App\Entity\Tag;
 use App\Entity\User;
@@ -49,6 +48,19 @@ class PostFixtures extends AbstractBaseFixtures implements DependentFixtureInter
             $category = $this->getRandomReference('categories');
             $post->setCategory($category);
 
+            /** @var array<array-key, Tag> $tags */
+            $tags = $this->getRandomReferences(
+                'tags',
+                $this->faker->numberBetween(0, 5)
+            );
+            foreach ($tags as $tag) {
+                $post->addTag($tag);
+            }
+
+            /** @var User $author */
+            $author = $this->getRandomReference('users');
+            $post->setAuthor($author);
+
             return $post;
         });
 
@@ -61,10 +73,10 @@ class PostFixtures extends AbstractBaseFixtures implements DependentFixtureInter
      *
      * @return string[] of dependencies
      *
-     * @psalm-return array{0: CategoryFixtures::class}
+     * @psalm-return array{0: CategoryFixtures::class, 1: TagFixtures::class, 2: UserFixtures::class}
      */
     public function getDependencies(): array
     {
-        return [CategoryFixtures::class];
+        return [CategoryFixtures::class, TagFixtures::class, UserFixtures::class];
     }
 }
