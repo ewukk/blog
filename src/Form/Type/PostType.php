@@ -54,7 +54,7 @@ class PostType extends AbstractType
             'title',
             TextType::class,
             [
-                'label' => 'label.title',
+                'label' => 'Title',
                 'required' => true,
                 'attr' => ['max_length' => 255],
             ]);
@@ -66,8 +66,8 @@ class PostType extends AbstractType
                 'choice_label' => function ($category): string {
                     return $category->getTitle();
                 },
-                'label' => 'label.category',
-                'placeholder' => 'label.none',
+                'label' => 'Category',
+                'placeholder' => 'none',
                 'required' => true,
             ]
         );
@@ -79,8 +79,8 @@ class PostType extends AbstractType
                 'choice_label' => function ($user): string {
                     return $user->getUsername();
                 },
-                'label' => 'label.category',
-                'placeholder' => 'label.none',
+                'label' => 'Content',
+                'placeholder' => 'None',
                 'required' => true,
             ]
         );
@@ -88,7 +88,7 @@ class PostType extends AbstractType
             'tags',
             TextType::class,
             [
-                'label' => 'label.tags',
+                'label' => 'Tags',
                 'required' => false,
                 'attr' => ['max_length' => 128],
             ]
