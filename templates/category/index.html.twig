@@ -12,9 +12,20 @@
             {{ knp_pagination_render(pagination) }}
         </div>
 
-        <a href="{{ url('category_create') }}" title="{{ 'action.create'|trans }}">
-            {{ 'create a category'|trans }}
-        </a>
+        <table class="buttons">
+        <thead>
+        <tr>
+            <th><a href="{{ url('category_create') }}" title="{{ 'action.create'|trans }}" class="{{ 'btn btn-light' }}">
+                    {{ 'create a category'|trans }}
+                </a></th>
+            <th><a href="{{ url('post_index') }}"  class="{{ 'btn btn-light' }}">
+                    {{ 'posts'|trans }}
+                </a></th>
+            <th><a href="{{ url('tag_index') }}"  class="{{ 'btn btn-light' }}">
+                    {{ 'tags'|trans }}
+                </a></th>
+        </tr>
+        </thead>
 
         <table class="table table-striped">
             <thead>

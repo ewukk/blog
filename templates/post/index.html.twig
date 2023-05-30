@@ -6,15 +6,27 @@
 
 {% block body %}
     <h1>{{ 'Formula 1 blog'|trans }}</h1>
+
     {% if pagination is defined and pagination.items|length %}
+
+        <table class="buttons">
+        <thead>
+        <tr>
+            <th><a href="{{ url('post_create') }}" title="{{ 'action.create'|trans }}" class="{{ 'btn btn-light' }}">
+                    {{ 'create a post'|trans }}
+                </a></th>
+            <th><a href="{{ url('category_index') }}"  class="{{ 'btn btn-light' }}">
+                    {{ 'categories'|trans }}
+                </a></th>
+            <th><a href="{{ url('tag_index') }}"  class="{{ 'btn btn-light' }}">
+                    {{ 'tags'|trans }}
+                </a></th>
+        </tr>
+        </thead>
 
         <div class="navigation text-center">
             {{ knp_pagination_render(pagination) }}
         </div>
-
-        <a href="{{ url('post_create') }}" title="{{ 'action.create'|trans }}">
-            {{ 'create a post'|trans }}
-        </a>
 
         <table class="table table-striped">
             <thead>
