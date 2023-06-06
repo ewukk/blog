@@ -97,6 +97,15 @@ class PostType extends AbstractType
         $builder->get('tags')->addModelTransformer(
             $this->tagsDataTransformer
         );
+
+        $builder->add(
+            'comment',
+            TextType::class,
+            [
+                'label' => 'Comment',
+                'required' => false,
+                'attr' => ['max_length' => 255],
+            ]);
     }
 
     /**

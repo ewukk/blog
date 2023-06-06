@@ -9,6 +9,7 @@ use App\Repository\PostRepository;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -100,6 +101,9 @@ class Post
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]
     private ?User $author;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $comment = null;
 
     /**
      * Constructor.
@@ -262,6 +266,18 @@ class Post
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getComment(): ?string
+    {
+        return $this->comment;
+    }
+
+    public function setComment(?string $comment): self
+    {
+        $this->comment = $comment;
 
         return $this;
     }

@@ -37,6 +37,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'post.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Category'|trans, 'category.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Content'|trans, 'post.content') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Comment'|trans, 'post.comment') }}</th>
                 <th>{{ 'Actions'|trans }}</th>
             </tr>
             </thead>
@@ -49,6 +50,7 @@
                     <td>{{ post.title }}</td>
                     <td>{{ post.category.title }}</td>
                     <td>{{ post.content }}</td>
+                    <td>{{ post.comment }}</td>
                     <td>
                         <a href="{{ url('post_show', {id: post.id}) }}" title="{{ 'action.show'|trans }}" class="btn btn-outline-dark">
                             {{ 'show'|trans }}

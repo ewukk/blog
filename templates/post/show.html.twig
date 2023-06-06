@@ -20,6 +20,8 @@
             <dd>{{  post.category.title }}</dd>
             <dt>{{ 'Content'|trans }}</dt>
             <dd>{{  post.content }}</dd>
+            <dt>{{ 'Comment'|trans }}</dt>
+            <dd>{{ post.comment|markdown_to_html }}</dd>
         </dl>
         <p>
             <a href="{{ url('post_index') }}" title="{{ 'action.back_to_posts'|trans }}">
