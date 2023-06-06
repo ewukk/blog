@@ -45,10 +45,10 @@
                     <td>{{ category.updatedAt|format_date('long') }}</td>
                     <td>{{ category.title }}</td>
                     <td>
-                        <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action.edit'|trans }}">
+                        <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action.edit'|trans }}" class="btn btn-outline-dark">
                             {{ 'edit'|trans }}
                         </a>
-                        <a href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'action.delete'|trans }}">
+                        <a href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'action.delete'|trans }}" class="btn btn-outline-dark">
                             {{ 'delete'|trans }}
                         </a>
                     </td>

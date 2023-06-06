@@ -13,7 +13,7 @@ use Knp\Component\Pager\PaginatorInterface;
 /**
  * Class UserService.
  */
-class UserService
+class UserService implements UserServiceInterface
 {
     /**
      * User repository.
@@ -64,6 +64,19 @@ class UserService
     public function save(User $user): void
     {
         $this->userRepository->save($user);
+    }
+
+    /**
+     * Remove user.
+     *
+     * @param \App\Entity\User $user User entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function remove(User $user): void
+    {
+        $this->userRepository->remove($user);
     }
 
 //    /**

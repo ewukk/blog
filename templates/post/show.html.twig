@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'post_details'|trans({'%id%': post.id|default('')}) }}
+    {{ 'post details'|trans({'%id%': post.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
@@ -23,7 +23,7 @@
         </dl>
         <p>
             <a href="{{ url('post_index') }}" title="{{ 'action.back_to_posts'|trans }}">
-                {{ 'back_to_posts'|trans }}
+                {{ 'Back to posts'|trans }}
             </a>
         </p>
     {% else %}

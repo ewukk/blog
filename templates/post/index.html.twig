@@ -50,13 +50,13 @@
                     <td>{{ post.category.title }}</td>
                     <td>{{ post.content }}</td>
                     <td>
-                        <a href="{{ url('post_show', {id: post.id}) }}" title="{{ 'action.show'|trans }}">
+                        <a href="{{ url('post_show', {id: post.id}) }}" title="{{ 'action.show'|trans }}" class="btn btn-outline-dark">
                             {{ 'show'|trans }}
                         </a>
-                        <a href="{{ url('post_edit', {id: post.id}) }}" title="{{ 'action.edit'|trans }}">
+                        <a href="{{ url('post_edit', {id: post.id}) }}" title="{{ 'action.edit'|trans }}" class="btn btn-outline-dark">
                             {{ 'edit'|trans }}
                         </a>
-                        <a href="{{ url('post_delete', {id: post.id}) }}" title="{{ 'action.delete'|trans }}">
+                        <a href="{{ url('post_delete', {id: post.id}) }}" title="{{ 'action.delete'|trans }}" class="btn btn-outline-dark">
                             {{ 'delete'|trans }}
                         </a>
                     </td>
