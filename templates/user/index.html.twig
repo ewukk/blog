@@ -5,27 +5,27 @@
 {% endblock %}
 
 {% block body %}
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand">Formula 1 blog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href={{ url('user_index') }}>Users<span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href={{ url('category_index') }}>Categories</a>
+                <a class="nav-item nav-link" href={{ url('tag_index') }}>Tags</a>
+                <a class="nav-item nav-link" href={{ url('post_index') }}>Posts</a>
+            </div>
+        </div>
+    </nav>
     <h1>{{ 'Formula 1 blog - users'|trans }}</h1>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
             {{ knp_pagination_render(pagination) }}
         </div>
-
-        <table class="buttons">
-        <thead>
-        <tr>
-            <th><a href="{{ url('category_index') }}" title="{{ 'action.create'|trans }}" class="{{ 'btn btn-light' }}">
-                    {{ 'categories'|trans }}
-                </a></th>
-            <th><a href="{{ url('post_index') }}"  class="{{ 'btn btn-light' }}">
-                    {{ 'posts'|trans }}
-                </a></th>
-            <th><a href="{{ url('tag_index') }}"  class="{{ 'btn btn-light' }}">
-                    {{ 'tags'|trans }}
-                </a></th>
-        </tr>
-        </thead>
 
         <table class="table table-striped">
             <thead>
