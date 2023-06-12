@@ -96,12 +96,12 @@ class CategoryVoter extends Voter
         switch ($attribute) {
             case self::MANAGE:
                 return $this->canManage($user);
-            case self::EDIT:
-                return $this->canEdit($subject, $user);
             case self::VIEW:
-                return $this->canView($subject, $user);
+                return $this->canView($user);
+            case self::EDIT:
+                return $this->canEdit($user);
             case self::DELETE:
-                return $this->canDelete($subject, $user);
+                return $this->canDelete($user);
         }
 
         return false;
@@ -110,56 +110,39 @@ class CategoryVoter extends Voter
     /**
      * Checks if user can edit category.
      *
-     * @param Category $category Category entity
      * @param User $user User
      *
      * @return bool Result
      */
-    private function canEdit(Category $category, User $user): bool
+    private function canEdit(User $user): bool
     {
-        if($this->security->isGranted('ROLE_ADMIN')){
-            return true;
-        }
-        else{
-            return $category->getAuthor() === $user;
-        }
+        return $this->security->isGranted('ROLE_ADMIN');
 
     }
 
     /**
      * Checks if user can view category.
      *
-     * @param Category $category Category entity
      * @param User $user User
      *
      * @return bool Result
      */
-    private function canView(Category $category, User $user): bool
+    private function canView(User $user): bool
     {
-        if($this->security->isGranted('ROLE_ADMIN')){
-            return true;
-        }
-        else{
-            return $category->getAuthor() === $user;
-        }
+        return true;
+
     }
 
     /**
      * Checks if user can delete category.
      *
-     * @param Category $category Category entity
      * @param User $user User
      *
      * @return bool Result
      */
-    private function canDelete(Category $category, User $user): bool
+    private function canDelete(User $user): bool
     {
-        if($this->security->isGranted('ROLE_ADMIN')){
-            return true;
-        }
-        else{
-            return $category->getAuthor() === $user;
-        }
+        return $this->security->isGranted('ROLE_ADMIN');
     }
 
     /**

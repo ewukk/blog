@@ -20,6 +20,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  * Class UserController.
  */
 #[Route('/user')]
+#[IsGranted('MANAGE')]
 class UserController extends AbstractController
 {
     /**

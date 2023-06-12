@@ -20,7 +20,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  * Class CategoryController.
  */
 #[Route('/category')]
-#[IsGranted('MANAGE')]
 class CategoryController extends AbstractController
 {
     /**
@@ -128,6 +127,7 @@ class CategoryController extends AbstractController
      */
     #[Route('/{id}/edit', name: 'category_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     #[IsGranted('EDIT', subject: 'category')]
+    #[IsGranted('MANAGE')]
     public function edit(Request $request, Category $category): Response
     {
         $form = $this->createForm(
@@ -170,6 +170,7 @@ class CategoryController extends AbstractController
      */
     #[Route('/{id}/delete', name: 'category_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     #[IsGranted('DELETE', subject: 'category')]
+    #[IsGranted('MANAGE')]
     public function delete(Request $request, Category $category): Response
     {
         if(!$this->categoryService->canBeDeleted($category)) {

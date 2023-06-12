@@ -96,12 +96,12 @@ class TagVoter extends Voter
         switch ($attribute) {
             case self::MANAGE:
                 return $this->canManage($user);
-            case self::EDIT:
-                return $this->canEdit($subject, $user);
             case self::VIEW:
-                return $this->canView($subject, $user);
+                return $this->canView($user);
+            case self::EDIT:
+                return $this->canEdit($user);
             case self::DELETE:
-                return $this->canDelete($subject, $user);
+                return $this->canDelete($user);
         }
 
         return false;
@@ -110,60 +110,43 @@ class TagVoter extends Voter
     /**
      * Checks if user can edit Tag.
      *
-     * @param Tag $tag Tag entity
      * @param User $user User
      *
      * @return bool Result
      */
-    private function canEdit(Tag $tag, User $user): bool
+    private function canEdit(User $user): bool
     {
-        if($this->security->isGranted('ROLE_ADMIN')){
-            return true;
-        }
-        else{
-            return $tag->getAuthor() === $user;
-        }
+        return $this->security->isGranted('ROLE_ADMIN');
 
     }
 
     /**
      * Checks if user can view Tag.
      *
-     * @param Tag $tag Tag entity
      * @param User $user User
      *
      * @return bool Result
      */
-    private function canView(Tag $tag, User $user): bool
+    private function canView(User $user): bool
     {
-        if($this->security->isGranted('ROLE_ADMIN')){
-            return true;
-        }
-        else{
-            return $tag->getAuthor() === $user;
-        }
+        return true;
+
     }
 
     /**
      * Checks if user can delete Tag.
      *
-     * @param Tag $tag Tag entity
      * @param User $user User
      *
      * @return bool Result
      */
-    private function canDelete(Tag $tag, User $user): bool
+    private function canDelete(User $user): bool
     {
-        if($this->security->isGranted('ROLE_ADMIN')){
-            return true;
-        }
-        else{
-            return $tag->getAuthor() === $user;
-        }
+        return $this->security->isGranted('ROLE_ADMIN');
     }
 
     /**
-     * Checks if user can delete tag.
+     * Checks if user can delete Tag.
      *
      * @param User $user User
      *
@@ -174,3 +157,4 @@ class TagVoter extends Voter
         return $this->security->isGranted('ROLE_ADMIN');
     }
 }
+

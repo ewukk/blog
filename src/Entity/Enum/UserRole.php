@@ -21,8 +21,8 @@ enum UserRole: string
     public function label(): string
     {
         return match ($this) {
-            UserRole::ROLE_USER => 'label.role_user',
-            UserRole::ROLE_ADMIN => 'label.role_admin',
+            UserRole::ROLE_USER => 'role_user',
+            UserRole::ROLE_ADMIN => 'role_admin',
         };
     }
 }

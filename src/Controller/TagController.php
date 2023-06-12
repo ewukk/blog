@@ -20,7 +20,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  * Class PostController.
  */
 #[Route('/tag')]
-#[IsGranted('MANAGE')]
 class TagController extends AbstractController
 {
     /**
@@ -120,6 +119,7 @@ class TagController extends AbstractController
      */
     #[Route('/{id}/edit', name: 'tag_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     #[IsGranted('EDIT', subject: 'tag')]
+    #[IsGranted('MANAGE')]
     public function edit(Request $request, Tag $tag): Response
     {
         $form = $this->createForm(
@@ -162,6 +162,7 @@ class TagController extends AbstractController
      */
     #[Route('/{id}/delete', name: 'tag_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     #[IsGranted('DELETE', subject: 'tag')]
+    #[IsGranted('MANAGE')]
     public function delete(Request $request, Tag $tag): Response
     {
         $form = $this->createForm(
