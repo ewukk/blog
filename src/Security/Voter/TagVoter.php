@@ -39,6 +39,13 @@ class TagVoter extends Voter
     public const DELETE = 'DELETE';
 
     /**
+     * Check permission.
+     *
+     * @const string
+     */
+    public const MANAGE = 'MANAGE';
+
+    /**
      * Security helper.
      *
      * @var Security
@@ -65,8 +72,8 @@ class TagVoter extends Voter
      */
     protected function supports(string $attribute, $subject): bool
     {
-        return in_array($attribute, [self::EDIT, self::VIEW, self::DELETE])
-            && $subject instanceof Tag;
+        return in_array($attribute, [self::EDIT, self::VIEW, self::DELETE, self::MANAGE])
+            && ($subject === null || $subject instanceof Tag);
     }
 
     /**
@@ -87,6 +94,8 @@ class TagVoter extends Voter
         }
 
         switch ($attribute) {
+            case self::MANAGE:
+                return $this->canManage($user);
             case self::EDIT:
                 return $this->canEdit($subject, $user);
             case self::VIEW:
@@ -108,7 +117,13 @@ class TagVoter extends Voter
      */
     private function canEdit(Tag $tag, User $user): bool
     {
-        return $tag->getAuthor() === $user;
+        if($this->security->isGranted('ROLE_ADMIN')){
+            return true;
+        }
+        else{
+            return $tag->getAuthor() === $user;
+        }
+
     }
 
     /**
@@ -121,7 +136,12 @@ class TagVoter extends Voter
      */
     private function canView(Tag $tag, User $user): bool
     {
-        return $tag->getAuthor() === $user;
+        if($this->security->isGranted('ROLE_ADMIN')){
+            return true;
+        }
+        else{
+            return $tag->getAuthor() === $user;
+        }
     }
 
     /**
@@ -134,6 +154,23 @@ class TagVoter extends Voter
      */
     private function canDelete(Tag $tag, User $user): bool
     {
-        return $tag->getAuthor() === $user;
+        if($this->security->isGranted('ROLE_ADMIN')){
+            return true;
+        }
+        else{
+            return $tag->getAuthor() === $user;
+        }
+    }
+
+    /**
+     * Checks if user can delete tag.
+     *
+     * @param User $user User
+     *
+     * @return bool Result
+     */
+    private function canManage(User $user): bool
+    {
+        return $this->security->isGranted('ROLE_ADMIN');
     }
 }

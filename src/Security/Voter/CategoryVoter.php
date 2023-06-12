@@ -39,6 +39,13 @@ class CategoryVoter extends Voter
     public const DELETE = 'DELETE';
 
     /**
+     * Check permission.
+     *
+     * @const string
+     */
+    public const MANAGE = 'MANAGE';
+
+    /**
      * Security helper.
      *
      * @var Security
@@ -65,8 +72,8 @@ class CategoryVoter extends Voter
      */
     protected function supports(string $attribute, $subject): bool
     {
-        return in_array($attribute, [self::EDIT, self::VIEW, self::DELETE])
-            && $subject instanceof Category;
+        return in_array($attribute, [self::EDIT, self::VIEW, self::DELETE, self::MANAGE])
+            && ($subject === null || $subject instanceof Category);
     }
 
     /**
@@ -87,6 +94,8 @@ class CategoryVoter extends Voter
         }
 
         switch ($attribute) {
+            case self::MANAGE:
+                return $this->canManage($user);
             case self::EDIT:
                 return $this->canEdit($subject, $user);
             case self::VIEW:
@@ -99,7 +108,7 @@ class CategoryVoter extends Voter
     }
 
     /**
-     * Checks if user can edit Category.
+     * Checks if user can edit category.
      *
      * @param Category $category Category entity
      * @param User $user User
@@ -108,11 +117,17 @@ class CategoryVoter extends Voter
      */
     private function canEdit(Category $category, User $user): bool
     {
-        return $category->getAuthor() === $user;
+        if($this->security->isGranted('ROLE_ADMIN')){
+            return true;
+        }
+        else{
+            return $category->getAuthor() === $user;
+        }
+
     }
 
     /**
-     * Checks if user can view Category.
+     * Checks if user can view category.
      *
      * @param Category $category Category entity
      * @param User $user User
@@ -121,11 +136,16 @@ class CategoryVoter extends Voter
      */
     private function canView(Category $category, User $user): bool
     {
-        return $category->getAuthor() === $user;
+        if($this->security->isGranted('ROLE_ADMIN')){
+            return true;
+        }
+        else{
+            return $category->getAuthor() === $user;
+        }
     }
 
     /**
-     * Checks if user can delete Category.
+     * Checks if user can delete category.
      *
      * @param Category $category Category entity
      * @param User $user User
@@ -134,6 +154,23 @@ class CategoryVoter extends Voter
      */
     private function canDelete(Category $category, User $user): bool
     {
-        return $category->getAuthor() === $user;
+        if($this->security->isGranted('ROLE_ADMIN')){
+            return true;
+        }
+        else{
+            return $category->getAuthor() === $user;
+        }
+    }
+
+    /**
+     * Checks if user can delete category.
+     *
+     * @param User $user User
+     *
+     * @return bool Result
+     */
+    private function canManage(User $user): bool
+    {
+        return $this->security->isGranted('ROLE_ADMIN');
     }
 }

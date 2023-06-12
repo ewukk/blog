@@ -79,11 +79,19 @@ class PostType extends AbstractType
                 'choice_label' => function ($user): string {
                     return $user->getUsername();
                 },
-                'label' => 'Content',
+                'label' => 'Author',
                 'placeholder' => 'None',
                 'required' => true,
             ]
         );
+        $builder->add(
+            'content',
+            TextType::class,
+            [
+                'label' => 'Content',
+                'required' => true,
+                'attr' => ['max_length' => 600],
+            ]);
         $builder->add(
             'tags',
             TextType::class,

@@ -10,6 +10,7 @@ use App\Repository\PostRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -73,7 +74,6 @@ class Category
     #[Assert\Length(max: 64)]
     #[Gedmo\Slug(fields: ['title'])]
     private ?string $slug = null;
-
 
     /**
      * Getter for Id.

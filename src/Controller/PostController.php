@@ -9,6 +9,7 @@ use App\Entity\Post;
 use App\Entity\User;
 use App\Form\Type\PostType;
 use App\Service\PostServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,7 +53,8 @@ class PostController extends AbstractController
     public function index(Request $request): Response
     {
         $pagination = $this->postService->getPaginatedList(
-            $request->query->getInt('page', 1)
+            $request->query->getInt('page', 1),
+            $this->getUser()
         );
 
         return $this->render('post/index.html.twig', ['pagination' => $pagination]);
@@ -71,9 +73,13 @@ class PostController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET'
     )]
+    #[IsGranted('VIEW', subject: 'post')]
     public function show(Post $post): Response
     {
-        return $this->render('post/show.html.twig', ['post' => $post]);
+        return $this->render(
+            'post/show.html.twig',
+            ['post' => $post]
+        );
     }
 
     /**
@@ -123,6 +129,7 @@ class PostController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'post_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[IsGranted('EDIT', subject: 'post')]
     public function edit(Request $request, Post $post): Response
     {
         $form = $this->createForm(
@@ -164,6 +171,7 @@ class PostController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'post_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[IsGranted('DELETE', subject: 'post')]
     public function delete(Request $request, Post $post): Response
     {
         $form = $this->createForm(

@@ -23,9 +23,7 @@
 
     <h1>{{ 'Formula 1 blog'|trans }}</h1>
 
-    {% if pagination is defined and pagination.items|length %}
-
-        <table class="buttons">
+    <table class="buttons">
         <thead>
         <tr>
             <th><a href="{{ url('post_create') }}" title="{{ 'action.create'|trans }}" class="{{ 'btn btn-light' }}">
@@ -33,6 +31,9 @@
                 </a></th>
         </tr>
         </thead>
+    </table>
+
+    {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
             {{ knp_pagination_render(pagination) }}
@@ -48,6 +49,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'Category'|trans, 'category.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Content'|trans, 'post.content') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Comment'|trans, 'post.comment') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Author'|trans, 'post.author.username') }}</th>
                 <th>{{ 'Actions'|trans }}</th>
             </tr>
             </thead>
@@ -61,16 +63,23 @@
                     <td>{{ post.category.title }}</td>
                     <td>{{ post.content }}</td>
                     <td>{{ post.comment }}</td>
+                    <td>{{ post.author.username }}</td>
                     <td>
-                        <a href="{{ url('post_show', {id: post.id}) }}" title="{{ 'action.show'|trans }}" class="btn btn-outline-dark">
-                            {{ 'show'|trans }}
-                        </a>
-                        <a href="{{ url('post_edit', {id: post.id}) }}" title="{{ 'action.edit'|trans }}" class="btn btn-outline-dark">
-                            {{ 'edit'|trans }}
-                        </a>
-                        <a href="{{ url('post_delete', {id: post.id}) }}" title="{{ 'action.delete'|trans }}" class="btn btn-outline-dark">
-                            {{ 'delete'|trans }}
-                        </a>
+                        {% if is_granted('VIEW', post) %}
+                            <a href="{{ url('post_show', {id: post.id}) }}" title="{{ 'action.show'|trans }}" class="btn btn-outline-dark">
+                                {{ 'show'|trans }}
+                            </a>
+                        {% endif %}
+                        {% if is_granted('EDIT', post) %}
+                            <a href="{{ url('post_edit', {id: post.id}) }}" title="{{ 'action.edit'|trans }}" class="btn btn-outline-dark">
+                                {{ 'edit'|trans }}
+                            </a>
+                        {% endif %}
+                        {% if is_granted('DELETE', post) %}
+                            <a href="{{ url('post_delete', {id: post.id}) }}" title="{{ 'action.delete'|trans }}" class="btn btn-outline-dark">
+                                {{ 'delete'|trans }}
+                            </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}
