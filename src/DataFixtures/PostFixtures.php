@@ -33,8 +33,7 @@ class PostFixtures extends AbstractBaseFixtures implements DependentFixtureInter
         $this->createMany(10, 'posts', function (int $i) {
             $post = new Post();
             $post->setTitle($this->faker->sentence);
-            $post->setContent($this->faker->sentence);
-            $post->setComment($this->faker->sentence);
+            $post->setContent($this->faker->text);
             $post->setCreatedAt(
                 DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')

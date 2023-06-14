@@ -7,7 +7,6 @@ namespace App\Repository;
 
 use App\Entity\Category;
 use App\Entity\Post;
-use App\Entity\Tag;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
@@ -60,9 +59,11 @@ class PostRepository extends ServiceEntityRepository
         return $this->getOrCreateQueryBuilder()
             ->select(
                 'partial post.{id, createdAt, updatedAt, title, content, comment}',
-                'partial category.{id, title}'
+                'partial category.{id, title}',
+                'partial tags.{id, title}'
             )
             ->join('post.category', 'category')
+            ->leftJoin('post.tags', 'tags')
             ->orderBy('post.updatedAt', 'DESC');
     }
 

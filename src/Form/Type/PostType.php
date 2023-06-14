@@ -6,6 +6,7 @@
 namespace App\Form\Type;
 
 use App\Entity\Category;
+use App\Entity\Comment;
 use App\Entity\Post;
 use App\Entity\User;
 use App\Form\DataTransformer\TagsDataTransformer;
@@ -101,19 +102,23 @@ class PostType extends AbstractType
                 'attr' => ['max_length' => 128],
             ]
         );
+        $builder->add(
+            'comment',
+            EntityType::class,
+            [
+                'class' => Comment::class,
+                'choice_label' => function ($comment): string {
+                    return $comment->getContent();
+                },
+                'label' => 'Comment',
+                'placeholder' => 'None',
+                'required' => false,
+            ]
+        );
 
         $builder->get('tags')->addModelTransformer(
             $this->tagsDataTransformer
         );
-
-        $builder->add(
-            'comment',
-            TextType::class,
-            [
-                'label' => 'Comment',
-                'required' => false,
-                'attr' => ['max_length' => 255],
-            ]);
     }
 
     /**

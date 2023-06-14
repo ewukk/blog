@@ -6,7 +6,6 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
-use App\Repository\PostRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -22,7 +21,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[UniqueEntity(fields: ['title'])]
 class Category
 {
-    public PostRepository $postRepository;
 
     /**
      * Primary key.

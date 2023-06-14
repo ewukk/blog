@@ -82,6 +82,17 @@ class Post
     private Category $category;
 
     /**
+     * Comments.
+     *
+     * @var Comment
+     */
+    #[ORM\ManyToOne(targetEntity: Comment::class, fetch: 'EXTRA_LAZY')]
+    #[Assert\Type(Comment::class)]
+    #[Assert\NotBlank]
+    //
+    private Comment $comment;
+
+    /**
      * Tags.
      *
      * @var Collection<int, Tag>
@@ -102,8 +113,6 @@ class Post
     #[Assert\Type(User::class)]
     private ?User $author;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $comment = null;
 
     /**
      * Constructor.
@@ -270,15 +279,9 @@ class Post
         return $this;
     }
 
-    public function getComment(): ?string
-    {
-        return $this->comment;
-    }
 
-    public function setComment(?string $comment): self
-    {
-        $this->comment = $comment;
 
-        return $this;
-    }
+
+
+
 }

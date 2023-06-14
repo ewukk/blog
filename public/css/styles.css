@@ -34,3 +34,8 @@ h1{
 .col-form-label{
     color: whitesmoke;
 }
+
+#logout{
+    display: flex;
+    justify-content: right
+}

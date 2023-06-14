@@ -16,7 +16,11 @@
                 <a class="nav-item nav-link active" href={{ url('post_index') }}>Posts <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href={{ url('category_index') }}>Categories</a>
                 <a class="nav-item nav-link" href={{ url('tag_index') }}>Tags</a>
+                <a class="nav-item nav-link" href={{ url('comment_index') }}>Comments</a>
                 <a class="nav-item nav-link" href={{ url('user_index') }}>Users</a>
+                {% if app.user %}
+                    <a id="logout" class="nav-item nav-link" href="{{ path('app_logout') }}">Logout {{ app.user.userIdentifier }}</a>
+                {% endif %}
             </div>
         </div>
     </nav>
@@ -47,9 +51,10 @@
                 <th>{{ knp_pagination_sortable(pagination, 'Updated_at'|trans, 'post.updatedAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'post.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Category'|trans, 'category.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Tag'|trans, 'tag.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Content'|trans, 'post.content') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Comment'|trans, 'post.comment') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Author'|trans, 'post.author.username') }}</th>
+
                 <th>{{ 'Actions'|trans }}</th>
             </tr>
             </thead>
@@ -61,23 +66,37 @@
                     <td>{{ post.updatedAt|format_date('long') }}</td>
                     <td>{{ post.title }}</td>
                     <td>{{ post.category.title }}</td>
+                    <td>
+                        {% for tag in post.tags %}
+                            {{ tag.title }},
+                        {% endfor %}
+                    </td>
                     <td>{{ post.content }}</td>
-                    <td>{{ post.comment }}</td>
                     <td>{{ post.author.username }}</td>
+
                     <td>
                         {% if is_granted('VIEW', post) %}
-                            <a href="{{ url('post_show', {id: post.id}) }}" title="{{ 'action.show'|trans }}" class="btn btn-outline-dark">
+                            <a href="{{ url('post_show', {id: post.id}) }}" title="{{ 'action.show'|trans }}" class="{{ 'btn btn-outline-dark' }}">
                                 {{ 'show'|trans }}
                             </a>
                         {% endif %}
                         {% if is_granted('EDIT', post) %}
-                            <a href="{{ url('post_edit', {id: post.id}) }}" title="{{ 'action.edit'|trans }}" class="btn btn-outline-dark">
+                            <a href="{{ url('post_edit', {id: post.id}) }}" title="{{ 'action.edit'|trans }}" class="{{ 'btn btn-outline-dark' }}">
                                 {{ 'edit'|trans }}
                             </a>
                         {% endif %}
                         {% if is_granted('DELETE', post) %}
-                            <a href="{{ url('post_delete', {id: post.id}) }}" title="{{ 'action.delete'|trans }}" class="btn btn-outline-dark">
+                            <a href="{{ url('post_delete', {id: post.id}) }}" title="{{ 'action.delete'|trans }}" class="{{ 'btn btn-outline-dark' }}">
                                 {{ 'delete'|trans }}
+                            </a>
+                        {% endif %}
+                        {% if app.user %}
+                            <a href="{{ url('comment_create', {id: post.id}) }}" title="{{ 'action.create'|trans }}" class="{{ 'btn btn-outline-dark' }}">
+                                {{ 'add a comment'|trans }}
+                            </a>
+                        {% else %}
+                            <a href="{{ url('comment_create', {id: post.id}) }}" title="{{ 'action.create'|trans }}" class="{{ 'btn btn-outline-dark' }}">
+                                {{ 'add a comment'|trans }}
                             </a>
                         {% endif %}
                     </td>

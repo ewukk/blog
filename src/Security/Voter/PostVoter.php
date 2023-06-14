@@ -39,6 +39,13 @@ class PostVoter extends Voter
     public const DELETE = 'DELETE';
 
     /**
+     * Check permission.
+     *
+     * @const string
+     */
+    public const MANAGE = 'MANAGE';
+
+    /**
      * Security helper.
      *
      * @var Security
@@ -65,7 +72,7 @@ class PostVoter extends Voter
      */
     protected function supports(string $attribute, $subject): bool
     {
-        return in_array($attribute, [self::EDIT, self::VIEW, self::DELETE])
+        return in_array($attribute, [self::EDIT, self::VIEW, self::DELETE, self::MANAGE])
             && $subject instanceof Post;
     }
 
@@ -87,6 +94,8 @@ class PostVoter extends Voter
         }
 
         switch ($attribute) {
+            case self::MANAGE:
+                return $this->canManage($user);
             case self::EDIT:
                 return $this->canEdit($subject, $user);
             case self::VIEW:
@@ -135,5 +144,17 @@ class PostVoter extends Voter
     private function canDelete(Post $post, User $user): bool
     {
         return $post->getAuthor() === $user;
+    }
+
+    /**
+     * Checks if user can delete category.
+     *
+     * @param User $user User
+     *
+     * @return bool Result
+     */
+    private function canManage(User $user): bool
+    {
+        return $this->security->isGranted('ROLE_ADMIN');
     }
 }
