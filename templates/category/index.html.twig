@@ -19,7 +19,7 @@
                 <a class="nav-item nav-link" href={{ url('comment_index') }}>Comments</a>
                 <a class="nav-item nav-link" href={{ url('user_index') }}>Users</a>
                 {% if app.user %}
-                    <a id="logout" class="nav-item nav-link" href="{{ path('app_logout') }}">Logout {{ app.user.userIdentifier }}</a>
+                    <a id="logout" class="nav-item nav-link" href="{{ path('app_logout') }}">Logout: {{ app.user.userIdentifier }}</a>
                 {% endif %}
             </div>
         </div>
