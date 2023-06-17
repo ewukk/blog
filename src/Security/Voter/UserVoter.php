@@ -1,11 +1,10 @@
 <?php
 /**
- * Post voter.
+ * User voter.
  */
 
 namespace App\Security\Voter;
 
-use App\Entity\Post;
 use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
@@ -13,9 +12,9 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class PostVoter.
+ * Class UserVoter.
  */
-class PostVoter extends Voter
+class UserVoter extends Voter
 {
     /**
      * Edit permission.
@@ -73,7 +72,7 @@ class PostVoter extends Voter
     protected function supports(string $attribute, $subject): bool
     {
         return in_array($attribute, [self::EDIT, self::VIEW, self::DELETE, self::MANAGE])
-            && $subject instanceof Post;
+            && ($subject === null || $subject instanceof User);
     }
 
     /**
@@ -96,70 +95,69 @@ class PostVoter extends Voter
         switch ($attribute) {
             case self::MANAGE:
                 return $this->canManage($user);
-            case self::EDIT:
-                return $this->canEdit($subject, $user);
             case self::VIEW:
-                return $this->canView($subject, $user);
+                return $this->canView($user);
+            case self::EDIT:
+                return $this->canEdit($user);
             case self::DELETE:
-                return $this->canDelete($subject, $user);
+                return $this->canDelete($user);
         }
 
         return false;
     }
 
     /**
-     * Checks if user can edit Post.
+     * Checks if user can edit User.
      *
-     * @param Post $post Post entity
      * @param User $user User
      *
      * @return bool Result
      */
-    private function canEdit(Post $post, User $user): bool
+    private function canEdit(User $user): bool
     {
-        if($post->getAuthor() === $user){
+        if($user->getAuthor() === $user){
             return true;
         }
         if($this->security->isGranted('ROLE_ADMIN')){
             return true;
         }
         return false;
+
     }
 
     /**
-     * Checks if user can view Post.
+     * Checks if user can view User.
      *
-     * @param Post $post Post entity
      * @param User $user User
      *
      * @return bool Result
      */
-    private function canView(Post $post, User $user): bool
+    private function canView(User $user): bool
     {
-        return true;
-    }
-
-    /**
-     * Checks if user can delete Post.
-     *
-     * @param Post $post Post entity
-     * @param User $user User
-     *
-     * @return bool Result
-     */
-    private function canDelete(Post $post, User $user): bool
-    {
-        if($post->getAuthor() === $user){
+        if($user->getAuthor() === $user){
             return true;
         }
         if($this->security->isGranted('ROLE_ADMIN')){
             return true;
         }
         return false;
+
     }
 
     /**
-     * Checks if user can delete category.
+     * Checks if user can delete User.
+     *
+     * @param User $user User
+     *
+     * @return bool Result
+     */
+    private function canDelete(User $user): bool
+    {
+        return $this->security->isGranted('ROLE_ADMIN');
+    }
+
+    /**
+     * Checks if user can delete User.
      *
      * @param User $user User
      *
@@ -170,3 +168,4 @@ class PostVoter extends Voter
         return $this->security->isGranted('ROLE_ADMIN');
     }
 }
+

@@ -20,7 +20,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  * Class UserController.
  */
 #[Route('/user')]
-#[IsGranted('MANAGE')]
 class UserController extends AbstractController
 {
     /**
@@ -55,6 +54,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route(name: 'user_index', methods: 'GET')]
+    #[IsGranted('MANAGE')]
     public function index(Request $request): Response
     {
         $pagination = $this->userService->createPaginatedList(
@@ -77,6 +77,7 @@ class UserController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET'
     )]
+    #[IsGranted('MANAGE')]
     public function show(user $user): Response
     {
         return $this->render('user/show.html.twig', ['user' => $user]);
@@ -126,6 +127,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'user_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[IsGranted('MANAGE')]
     public function edit(Request $request, user $user): Response
     {
         $form = $this->createForm(

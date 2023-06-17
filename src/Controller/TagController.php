@@ -85,6 +85,7 @@ class TagController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/create', name: 'tag_create', methods: 'GET|POST', )]
+    #[IsGranted('MANAGE', subject: 'tag')]
     public function create(Request $request): Response
     {
         $tag = new Tag();

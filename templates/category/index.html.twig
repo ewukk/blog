@@ -17,7 +17,9 @@
                 <a class="nav-item nav-link" href={{ url('post_index') }}>Posts</a>
                 <a class="nav-item nav-link" href={{ url('tag_index') }}>Tags</a>
                 <a class="nav-item nav-link" href={{ url('comment_index') }}>Comments</a>
-                <a class="nav-item nav-link" href={{ url('user_index') }}>Users</a>
+                {% if is_granted('MANAGE') %}
+                    <a class="nav-item nav-link" href={{ url('user_index') }}>Users</a>
+                {% endif %}
                 {% if app.user %}
                     <a id="logout" class="nav-item nav-link" href="{{ path('app_logout') }}">Logout: {{ app.user.userIdentifier }}</a>
                 {% endif %}

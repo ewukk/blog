@@ -73,7 +73,7 @@ class PostService implements PostServiceInterface
         $filters = $this->prepareFilters($filters);
 
         return $this->paginator->paginate(
-            $this->postRepository->queryByAuthor($author, $filters),
+            $this->postRepository->queryAll($filters),
             $page,
             PostRepository::PAGINATOR_ITEMS_PER_PAGE
         );

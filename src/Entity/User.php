@@ -101,6 +101,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * Author.
+     *
+     * @var User|null
+     */
+    private ?User $author;
+
+    /**
      * A visual identifier that represents this user.
      *
      * @return string User identifier
@@ -192,18 +199,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getComment(): ?Comment
-    {
-        return $this->comment;
-    }
-
-    public function setComment(?Comment $comment): self
-    {
-        $this->comment = $comment;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Comment>
      */
@@ -232,5 +227,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
     }
 }
