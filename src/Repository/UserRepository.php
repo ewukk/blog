@@ -9,6 +9,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
  * @extends ServiceEntityRepository<User>
@@ -22,8 +23,9 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 {
     const PAGINATOR_ITEMS_PER_PAGE = 7;
 
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, UserPasswordHasherInterface $passwordHasher)
     {
+        $this->passwordHasher = $passwordHasher;
         parent::__construct($registry, User::class);
     }
 
@@ -51,13 +53,14 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return $queryBuilder ?? $this->createQueryBuilder('user');
     }
 
-    public function save(User $entity, bool $flush = false): void
+    public function save(User $entity): void
     {
+        $hashedPassword = $this->passwordHasher->hashPassword($entity, $entity->getPassword());
+        $entity->setPassword($hashedPassword);
+        $entity->setRoles(['ROLE_USER']);
         $this->getEntityManager()->persist($entity);
 
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        $this->getEntityManager()->flush();
     }
 
     public function remove(User $entity, bool $flush = false): void
@@ -67,6 +70,15 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function edit(User $entity): void
+    {
+        $hashedPassword = $this->passwordHasher->hashPassword($entity, $entity->getPassword());
+        $entity->setPassword($hashedPassword);
+        $this->getEntityManager()->persist($entity);
+
+        $this->getEntityManager()->flush();
     }
 
     /**
