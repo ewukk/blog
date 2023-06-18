@@ -30,6 +30,13 @@ interface UserServiceInterface
     public function save(User $user): void;
 
     /**
+     * Edit entity.
+     *
+     * @param User $user User entity
+     */
+    public function edit(User $user): void;
+
+    /**
      * Remove entity.
      *
      * @param User $user User entity

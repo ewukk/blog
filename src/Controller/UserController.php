@@ -127,7 +127,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'user_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
-    #[IsGranted('MANAGE')]
+    #[IsGranted('EDIT')]
     public function edit(Request $request, user $user): Response
     {
         $form = $this->createForm(

@@ -67,6 +67,19 @@ class UserService implements UserServiceInterface
     }
 
     /**
+     * Edit user.
+     *
+     * @param \App\Entity\User $user User entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function edit(User $user): void
+    {
+        $this->userRepository->edit($user);
+    }
+
+    /**
      * Remove user.
      *
      * @param \App\Entity\User $user User entity
