@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'Details of the post'|trans({'%id%': post.id|default('')}) }}</h1>
+    <h1>{{ 'Szczegóły postu'|trans({'%id%': post.id|default('')}) }}</h1>
     {% if post is defined and post|length %}
         <dl class="dl-horizontal">
             <dt>{{ 'Id'|trans }}</dt>
@@ -29,7 +29,7 @@
         </dl>
         <p>
             <a href="{{ url('post_index') }}" title="{{ 'action.back_to_posts'|trans }}" class="{{ 'btn btn-light' }}">
-                {{ 'Back to posts'|trans }}
+                {{ 'Powrót do postów'|trans }}
             </a>
         </p>
     {% else %}

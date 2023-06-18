@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'Details of the tag'|trans({'%id%': tag.id|default('')}) }}</h1>
+    <h1>{{ 'Szczegóły tagu'|trans({'%id%': tag.id|default('')}) }}</h1>
     {% if tag is defined and tag|length %}
         <dl class="dl-horizontal">
             <dt>{{ 'Id'|trans }}</dt>

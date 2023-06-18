@@ -5,19 +5,19 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'Details of the user'|trans({'%id%': user.id|default('')}) }}</h1>
+    <h1>{{ 'Szczegóły użytkownika'|trans({'%id%': user.id|default('')}) }}</h1>
     {% if user is defined and user|length %}
         <dl class="dl-horizontal">
             <dt>{{ 'Id'|trans }}</dt>
             <dd>{{ user.id }}</dd>
             <dt>{{ 'Email'|trans }}</dt>
             <dd>{{  user.email }}</dd>
-            <dt>{{ 'Password'|trans }}</dt>
+            <dt>{{ 'Hasło'|trans }}</dt>
             <dd>{{  user.password }}</dd>
         </dl>
         <p>
             <a href="{{ url('post_index') }}" title="{{ 'action.back_to_posts'|trans }}" class="{{ 'btn btn-light' }}">
-                {{ 'Back to posts'|trans }}
+                {{ 'powrót do postów'|trans }}
             </a>
         </p>
     {% else %}

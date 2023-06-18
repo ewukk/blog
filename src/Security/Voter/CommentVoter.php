@@ -99,9 +99,9 @@ class CommentVoter extends Voter
             case self::VIEW:
                 return $this->canView($user);
             case self::EDIT:
-                return $this->canEdit($user);
+                return $this->canEdit($subject, $user);
             case self::DELETE:
-                return $this->canDelete($user);
+                return $this->canDelete($subject, $user);
         }
 
         return false;
@@ -110,13 +110,20 @@ class CommentVoter extends Voter
     /**
      * Checks if user can edit Comment.
      *
+     * @param Comment $comment Post entity
      * @param User $user User
      *
      * @return bool Result
      */
-    private function canEdit(User $user): bool
+    private function canEdit(Comment $comment, User $user): bool
     {
-        return $this->security->isGranted('ROLE_ADMIN');
+        if($comment->getAuthor() === $user){
+            return true;
+        }
+        if($this->security->isGranted('ROLE_ADMIN')){
+            return true;
+        }
+        return false;
 
     }
 
@@ -136,13 +143,20 @@ class CommentVoter extends Voter
     /**
      * Checks if user can delete Comment.
      *
+     * @param Comment $comment Post entity
      * @param User $user User
      *
      * @return bool Result
      */
-    private function canDelete(User $user): bool
+    private function canDelete(Comment $comment, User $user): bool
     {
-        return $this->security->isGranted('ROLE_ADMIN');
+        if($comment->getAuthor() === $user){
+            return true;
+        }
+        if($this->security->isGranted('ROLE_ADMIN')){
+            return true;
+        }
+        return false;
     }
 
     /**
