@@ -122,14 +122,15 @@ class UserController extends AbstractController
      * Edit action.
      *
      * @param Request  $request  HTTP request
-     * @param user $user user entity
+     * @param User $user user entity
      *
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'user_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
-    #[IsGranted('EDIT')]
-    public function edit(Request $request, user $user): Response
+//    #[IsGranted('EDIT')]
+    public function edit(Request $request, User $user): Response
     {
+
         $form = $this->createForm(
             UserType::class,
             $user,

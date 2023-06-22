@@ -33,22 +33,13 @@
             {{ knp_pagination_render(pagination) }}
         </div>
 
-        <table class="buttons">
-        <thead>
-        <tr>
-            <th><a href="{{ url('comment_create') }}" title="{{ 'action.create'|trans }}" class="{{ 'btn btn-light' }}">
-                    {{ 'stwórz komentarz'|trans }}
-                </a></th>
-        </tr>
-        </thead>
-
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'Id'|trans, 'comment.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Post title'|trans, 'comment.post.title') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Author'|trans, 'comment.author.username') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Content'|trans, 'comment.content') }}</th>
+                <th>{{ 'Post title'|trans }}</th>
+                <th>{{ 'Author'|trans }}</th>
+                <th>{{ 'Content'|trans }}</th>
                 <th>{{ 'Actions'|trans }}</th>
             </tr>
             </thead>

@@ -89,7 +89,7 @@ class Post
     #[ORM\ManyToOne(targetEntity: Comment::class, fetch: 'EXTRA_LAZY')]
     #[Assert\Type(Comment::class)]
     #[Assert\NotBlank]
-    //
+    #[ORM\JoinColumn(nullable: false)]
     private Comment $comment;
 
     /**
@@ -236,6 +236,29 @@ class Post
     }
 
     /**
+     * Getter for comment.
+     *
+     * @return Comment|null Comment
+     */
+    public function getComment(): ?Comment
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Setter for comment.
+     *
+     * @param Comment|null $comment Comment
+     * @return Post
+     */
+    public function setComment(?Comment $comment): self
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
      * Getter for tags.
      *
      * @return Collection<int, Tag> Tags collection
@@ -267,11 +290,21 @@ class Post
         $this->tags->removeElement($tag);
     }
 
+    /**
+     * Getter for author.
+     *
+     * @return User|null User
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
+    /**
+     * Setter for author.
+     *
+     * @param User|null $author User
+     */
     public function setAuthor(?User $author): self
     {
         $this->author = $author;

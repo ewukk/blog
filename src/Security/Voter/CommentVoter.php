@@ -110,7 +110,7 @@ class CommentVoter extends Voter
     /**
      * Checks if user can edit Comment.
      *
-     * @param Comment $comment Post entity
+     * @param Comment $comment Comment entity
      * @param User $user User
      *
      * @return bool Result
@@ -143,7 +143,7 @@ class CommentVoter extends Voter
     /**
      * Checks if user can delete Comment.
      *
-     * @param Comment $comment Post entity
+     * @param Comment $comment Comment entity
      * @param User $user User
      *
      * @return bool Result

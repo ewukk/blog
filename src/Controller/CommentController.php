@@ -6,6 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
+use App\Entity\Post;
 use App\Form\Type\CommentType;
 use App\Service\CommentServiceInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -15,6 +16,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+
 
 /**
  * Class CommentController.
@@ -45,8 +48,8 @@ class CommentController extends AbstractController
      * Index action.
      *
      * @param Request $request HTTP Request
-     *
      * @return Response HTTP response
+     *
      */
     #[Route(name: 'comment_index', methods: 'GET')]
     public function index(Request $request): Response
@@ -81,17 +84,20 @@ class CommentController extends AbstractController
      * Create action.
      *
      * @param Request $request HTTP request
+     * @param Post $post Post entity
      *
      * @return Response HTTP response
      */
-    #[Route('/create', name: 'comment_create', methods: 'GET|POST', )]
-    public function create(Request $request): Response
+    #[Route('/create/{id}', name: 'comment_create', methods: 'GET|POST', )]
+    public function create(Request $request, Post $post): Response
     {
         $comment = new Comment();
+        $comment->setPost($post);
+        $comment->setAuthor($this->getUser());
         $form = $this->createForm(
             CommentType::class,
             $comment,
-            ['action' => $this->generateUrl('comment_create')]
+            ['action' => $this->generateUrl('comment_create', ['id' => $post->getId()])]
         );
         $form->handleRequest($request);
 

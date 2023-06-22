@@ -89,7 +89,7 @@ class PostRepository extends ServiceEntityRepository
         }
 
         if (isset($filters['tag']) && $filters['tag'] instanceof Tag) {
-            $queryBuilder->andWhere('tags IN (:tag)')
+            $queryBuilder->andWhere('tag IN (:tag)')
                 ->setParameter('tag', $filters['tag']);
         }
 
@@ -168,5 +168,7 @@ class PostRepository extends ServiceEntityRepository
 
         return $queryBuilder;
     }
+
+
 
 }
