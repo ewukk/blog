@@ -11,11 +11,21 @@ use Doctrine\ORM\Mapping as ORM;
 class Comment
 {
 
+    /**
+     * Primary key.
+     *
+     * @var int|null
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
+    /**
+     * Content.
+     *
+     * @var string|null
+     */
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
 

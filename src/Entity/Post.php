@@ -89,7 +89,7 @@ class Post
     #[ORM\ManyToOne(targetEntity: Comment::class, fetch: 'EXTRA_LAZY')]
     #[Assert\Type(Comment::class)]
     #[Assert\NotBlank]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private Comment $comment;
 
     /**

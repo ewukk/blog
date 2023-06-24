@@ -17,6 +17,11 @@
                 <a class="nav-item nav-link" href={{ url('post_index') }}>Posty</a>
                 <a class="nav-item nav-link" href={{ url('tag_index') }}>Tagi</a>
                 <a class="nav-item nav-link" href={{ url('comment_index') }}>Komentarze</a>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a href="{{ url('user_edit', {id: app.user.id}) }}" title="{{ 'action.show'|trans }}" class="{{ 'nav-item nav-link' }}">
+                        {{ 'Konto'|trans }}
+                    </a>
+                {% endif %}
                 {% if is_granted('MANAGE') %}
                     <a class="nav-item nav-link" href={{ url('user_index') }}>Użytkownicy</a>
                 {% endif %}
