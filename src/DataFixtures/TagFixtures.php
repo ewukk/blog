@@ -5,15 +5,13 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Category;
 use App\Entity\Tag;
 use DateTimeImmutable;
-use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
  * Class TagFixtures.
  */
-class TagFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
+class TagFixtures extends AbstractBaseFixtures
 {
     /**
      * Load data.
@@ -48,19 +46,6 @@ class TagFixtures extends AbstractBaseFixtures implements DependentFixtureInterf
         });
 
         $this->manager->flush();
-    }
-
-    /**
-     * This method must return an array of fixtures classes
-     * on which the implementing class depends on.
-     *
-     * @return string[] of dependencies
-     *
-     * @psalm-return array{0: CategoryFixtures::class}
-     */
-    public function getDependencies(): array
-    {
-        return [CategoryFixtures::class];
     }
 
 }

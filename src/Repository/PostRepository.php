@@ -8,13 +8,11 @@ namespace App\Repository;
 use App\Entity\Category;
 use App\Entity\Post;
 use App\Entity\Tag;
-use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class PostRepository.
@@ -150,25 +148,5 @@ class PostRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
-
-    /**
-     * Query posts by author.
-     *
-     * @param UserInterface         $user    User entity
-     * @param array<string, object> $filters Filters
-     *
-     * @return QueryBuilder Query builder
-     */
-    public function queryByAuthor(UserInterface $user, array $filters = []): QueryBuilder
-    {
-        $queryBuilder = $this->queryAll($filters);
-
-        $queryBuilder->andWhere('post.author = :author')
-            ->setParameter('author', $user);
-
-        return $queryBuilder;
-    }
-
-
 
 }

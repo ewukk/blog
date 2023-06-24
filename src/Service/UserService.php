@@ -92,18 +92,6 @@ class UserService implements UserServiceInterface
         $this->userRepository->remove($user);
     }
 
-//    /**
-//     * Find by email.
-//     *
-//     * @param string $email Email
-//     *
-//     * @return \Symfony\Component\Security\Core\User\UserInterface
-//     */
-//    public function findOneByEmail(string $email): UserInterface
-//    {
-//        return $this->userRepository->findOneByEmail($email);
-//    }
-
     /**
      * Find user.
      *

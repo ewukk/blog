@@ -6,6 +6,14 @@
         <source>Actions</source>
         <target>Akcje</target>
       </trans-unit>
+      <trans-unit id="back to posts">
+         <source>back to posts</source>
+         <target>powrót</target>
+      </trans-unit>
+      <trans-unit id="Password">
+          <source>Password</source>
+          <target>Hasło</target>
+      </trans-unit>
       <trans-unit id="id">
         <source>id</source>
         <target>Id</target>

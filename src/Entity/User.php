@@ -59,16 +59,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank]
     private ?string $password;
 
-    #[ORM\ManyToOne]
-    private ?Comment $comment = null;
-
+    /**
+     * Comments.
+     *
+     * @var Collection<int, Comment>
+     */
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Comment::class)]
+    #[Assert\Type(Comment::class)]
+    #[ORM\JoinColumn(nullable: true)]
     private Collection $comments;
 
+    /**
+     * Constructor.
+     *
+     */
     public function __construct()
     {
         $this->comments = new ArrayCollection();
     }
+
+    /**
+     * Author.
+     *
+     * @var User
+     */
+    private User $author;
 
     /**
      * Getter for id.
@@ -99,13 +114,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->email = $email;
     }
-
-    /**
-     * Author.
-     *
-     * @var User|null
-     */
-    private ?User $author;
 
     /**
      * A visual identifier that represents this user.
@@ -207,6 +215,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->comments;
     }
 
+    /**
+     * Setter for comments
+     *
+     * @param Comment|null $comment Comment
+     */
+    public function setComments(?Comment $comment): void
+    {
+        $this->comment = $comment;
+    }
+
+    /**
+     * Add comment.
+     *
+     */
     public function addComment(Comment $comment): static
     {
         if (!$this->comments->contains($comment)) {
@@ -217,6 +239,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * Remove comment.
+     *
+     */
     public function removeComment(Comment $comment): static
     {
         if ($this->comments->removeElement($comment)) {
@@ -229,6 +255,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * Getter for author.
+     *
+     * @return User|null User
+     */
     public function getAuthor(): ?User
     {
         return $this->author;

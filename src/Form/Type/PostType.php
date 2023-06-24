@@ -111,7 +111,6 @@ class PostType extends AbstractType
                     return $comment->getContent();
                 },
                 'label' => 'Comment',
-                'placeholder' => 'None',
                 'required' => false,
             ]
         );

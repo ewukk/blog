@@ -29,24 +29,50 @@ class Comment
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
 
+    /**
+     * Post.
+     *
+     * @var Post
+     */
     #[ORM\ManyToOne(targetEntity: Post::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Post $post = null;
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
+    private Post $post;
 
+    /**
+     * Author.
+     *
+     * @var User|null
+     */
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $author = null;
 
+    /**
+     * Getter for id.
+     *
+     * @return int|null Id
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Getter for content.
+     *
+     * @return string|null Content
+     */
     public function getContent(): ?string
     {
         return $this->content;
     }
 
+    /**
+     * Setter for content.
+     *
+     * @param string|null $content Content
+     * @return Comment
+     */
     public function setContent(?string $content): self
     {
         $this->content = $content;
@@ -54,11 +80,21 @@ class Comment
         return $this;
     }
 
+    /**
+     * Getter for post.
+     *
+     * @return Post|null Post
+     */
     public function getPost(): ?Post
     {
         return $this->post;
     }
 
+    /**
+     * Setter for post.
+     *
+     * @param Post|null $post Post
+     */
     public function setPost(?Post $post): static
     {
         $this->post = $post;
@@ -66,11 +102,21 @@ class Comment
         return $this;
     }
 
+    /**
+     * Getter for author.
+     *
+     * @return User|null User
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
+    /**
+     * Setter for author.
+     *
+     * @param User|null $author User
+     */
     public function setAuthor(?User $author): static
     {
         $this->author = $author;

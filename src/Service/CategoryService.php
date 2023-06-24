@@ -6,11 +6,11 @@
 namespace App\Service;
 
 use App\Entity\Category;
-use App\Entity\User;
 use App\Repository\CategoryRepository;
 use App\Repository\PostRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPagination;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -48,6 +48,13 @@ class CategoryService implements CategoryServiceInterface
         $this->paginator = $paginator;
     }
 
+    /**
+     * Get paginated list.
+     *
+     * @param int                $page    Page number
+     *
+     * @return PaginationInterface<SlidingPagination> Paginated list
+     */
     public function getPaginatedList(int $page): PaginationInterface
     {
         return $this->paginator->paginate(

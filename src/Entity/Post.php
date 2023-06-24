@@ -88,8 +88,7 @@ class Post
      */
     #[ORM\ManyToOne(targetEntity: Comment::class, fetch: 'EXTRA_LAZY')]
     #[Assert\Type(Comment::class)]
-    #[Assert\NotBlank]
-    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'CASCADE')]
     private Comment $comment;
 
     /**
@@ -289,6 +288,7 @@ class Post
     {
         $this->tags->removeElement($tag);
     }
+
 
     /**
      * Getter for author.
