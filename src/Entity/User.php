@@ -60,23 +60,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password;
 
     /**
-     * Comments.
+     * Comment.
      *
-     * @var Collection<int, Comment>
+     * @var Comment
      */
-    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Comment::class)]
+    #[ORM\ManyToOne]
     #[Assert\Type(Comment::class)]
-    #[ORM\JoinColumn(nullable: true)]
-    private Collection $comments;
+    private Comment $comment;
 
-    /**
-     * Constructor.
-     *
-     */
-    public function __construct()
-    {
-        $this->comments = new ArrayCollection();
-    }
 
     /**
      * Author.
@@ -208,21 +199,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Comment>
+     * Getter for comment.
+     *
+     * @return Comment|null Comment
      */
-    public function getComments(): Collection
+    public function getComment(): ?Comment
     {
-        return $this->comments;
+        return $this->comment;
     }
 
     /**
-     * Setter for comments
+     * Setter for comment.
      *
      * @param Comment|null $comment Comment
+     * @return User
      */
-    public function setComments(?Comment $comment): void
+    public function setComment(?Comment $comment): self
     {
         $this->comment = $comment;
+
+        return $this;
     }
 
     /**
@@ -231,8 +227,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function addComment(Comment $comment): static
     {
-        if (!$this->comments->contains($comment)) {
-            $this->comments->add($comment);
+        if (!$this->comment->contains($comment)) {
+            $this->comment->add($comment);
             $comment->setAuthor($this);
         }
 
@@ -245,7 +241,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function removeComment(Comment $comment): static
     {
-        if ($this->comments->removeElement($comment)) {
+        if ($this->comment->removeElement($comment)) {
             // set the owning side to null (unless already changed)
             if ($comment->getAuthor() === $this) {
                 $comment->setAuthor(null);
@@ -263,5 +259,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getAuthor(): ?User
     {
         return $this->author;
+    }
+
+    /**
+     * Setter for author.
+     *
+     * @param User|null $author User
+     */
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
+
+        return $this;
     }
 }
