@@ -56,8 +56,10 @@ class PostController extends AbstractController
     public function index(Request $request): Response
     {
         $filters = $this->getFilters($request);
+
         /** @var User $user */
         $user = $this->getUser();
+
         $pagination = $this->postService->getPaginatedList(
             $request->query->getInt('page', 1),
             $user,
@@ -101,6 +103,7 @@ class PostController extends AbstractController
     {
         /** @var User $user */
         $user = $this->getUser();
+
         $post = new Post();
         $post->setAuthor($user);
         $form = $this->createForm(

@@ -5,6 +5,7 @@
 
 namespace App\Security;
 
+use App\Repository\UserRepository;
 use Exception;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,7 +52,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
      *
      * @param UrlGeneratorInterface $urlGenerator Url generator
      */
-    public function __construct(UrlGeneratorInterface $urlGenerator)
+    public function __construct(UserRepository $userRepository, UrlGeneratorInterface $urlGenerator)
     {
         $this->urlGenerator = $urlGenerator;
     }

@@ -28,8 +28,8 @@ class UserService implements UserServiceInterface
     /**
      * UserService constructor.
      *
-     * @param \App\Repository\UserRepository          $userRepository User repository
-     * @param \Knp\Component\Pager\PaginatorInterface $paginator      Paginator
+     * @param UserRepository     $userRepository User repository
+     * @param PaginatorInterface $paginator      Paginator
      */
     public function __construct(UserRepository $userRepository, PaginatorInterface $paginator)
     {
@@ -42,7 +42,7 @@ class UserService implements UserServiceInterface
      *
      * @param int $page Page number
      *
-     * @return \Knp\Component\Pager\Pagination\PaginationInterface Paginated list
+     * @return PaginationInterface Paginated list
      */
     public function createPaginatedList(int $page): PaginationInterface
     {
@@ -56,10 +56,8 @@ class UserService implements UserServiceInterface
     /**
      * Save user.
      *
-     * @param \App\Entity\User $user User entity
+     * @param User $user User entity
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function save(User $user): void
     {
@@ -69,10 +67,8 @@ class UserService implements UserServiceInterface
     /**
      * Edit user.
      *
-     * @param \App\Entity\User $user User entity
+     * @param User $user User entity
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function edit(User $user): void
     {
@@ -82,10 +78,8 @@ class UserService implements UserServiceInterface
     /**
      * Remove user.
      *
-     * @param \App\Entity\User $user User entity
+     * @param User $user User entity
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function remove(User $user): void
     {
@@ -97,7 +91,7 @@ class UserService implements UserServiceInterface
      *
      * @param string $email Email
      *
-     * @return \App\Entity\User|null
+     * @return User|null
      */
     public function findOneBy(string $email): ?User
     {
