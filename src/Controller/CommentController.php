@@ -91,8 +91,8 @@ class CommentController extends AbstractController
     public function create(Request $request, Post $post): Response
     {
         $comment = new Comment();
-        $comment->setPost($post);
         $comment->setAuthor($this->getUser());
+        $comment->setPost($post);
         $form = $this->createForm(
             CommentType::class,
             $comment,
@@ -167,7 +167,6 @@ class CommentController extends AbstractController
      */
     #[Route('/{id}/delete', name: 'comment_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     #[IsGranted('DELETE', subject: 'comment')]
-    #[IsGranted('MANAGE')]
     public function delete(Request $request, Comment $comment): Response
     {
         $form = $this->createForm(

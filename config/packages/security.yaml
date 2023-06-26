@@ -43,7 +43,6 @@ security:
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/login, roles: PUBLIC_ACCESS}
         - { path: ^/register, roles: PUBLIC_ACCESS}
-        - { path: ^/user/create, roles: PUBLIC_ACCESS}
         - { path: ^/, roles: ROLE_USER}
 
 when@test:

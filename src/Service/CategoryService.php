@@ -61,7 +61,7 @@ class CategoryService implements CategoryServiceInterface
         return $this->paginator->paginate(
             $this->categoryRepository->queryAll(),
             $page,
-            PostRepository::PAGINATOR_ITEMS_PER_PAGE
+            CategoryRepository::PAGINATOR_ITEMS_PER_PAGE
         );
     }
 

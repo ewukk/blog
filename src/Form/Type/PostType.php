@@ -6,9 +6,7 @@
 namespace App\Form\Type;
 
 use App\Entity\Category;
-use App\Entity\Comment;
 use App\Entity\Post;
-use App\Entity\User;
 use App\Form\DataTransformer\TagsDataTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -27,6 +25,7 @@ class PostType extends AbstractType
      * @var TagsDataTransformer
      */
     private TagsDataTransformer $tagsDataTransformer;
+
 
     /**
      * Constructor.
@@ -73,19 +72,6 @@ class PostType extends AbstractType
             ]
         );
         $builder->add(
-            'author',
-            EntityType::class,
-            [
-                'class' => User::class,
-                'choice_label' => function ($user): string {
-                    return $user->getUsername();
-                },
-                'label' => 'Author',
-                'placeholder' => 'None',
-                'required' => true,
-            ]
-        );
-        $builder->add(
             'content',
             TextType::class,
             [
@@ -100,18 +86,6 @@ class PostType extends AbstractType
                 'label' => 'Tags',
                 'required' => false,
                 'attr' => ['max_length' => 128],
-            ]
-        );
-        $builder->add(
-            'comment',
-            EntityType::class,
-            [
-                'class' => Comment::class,
-                'choice_label' => function ($comment): string {
-                    return $comment->getContent();
-                },
-                'label' => 'Comment',
-                'required' => false,
             ]
         );
 

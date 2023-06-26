@@ -26,13 +26,20 @@ class UserService implements UserServiceInterface
     private PaginatorInterface $paginator;
 
     /**
+     * Comment service.
+     */
+    private CommentServiceInterface $commentService;
+
+    /**
      * UserService constructor.
      *
+     * @param CommentServiceInterface $commentService Comment service
      * @param UserRepository     $userRepository User repository
      * @param PaginatorInterface $paginator      Paginator
      */
-    public function __construct(UserRepository $userRepository, PaginatorInterface $paginator)
+    public function __construct(CommentServiceInterface $commentService, UserRepository $userRepository, PaginatorInterface $paginator)
     {
+        $this->commentService = $commentService;
         $this->userRepository = $userRepository;
         $this->paginator = $paginator;
     }

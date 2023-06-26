@@ -37,7 +37,7 @@ class PostRepository extends ServiceEntityRepository
      *
      * @constant int
      */
-    public const PAGINATOR_ITEMS_PER_PAGE = 7;
+    public const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
      * Constructor.
@@ -60,9 +60,9 @@ class PostRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->getOrCreateQueryBuilder()
             ->select(
-                'partial post.{id, createdAt, updatedAt, title, content, comment}',
+                'partial post.{id, createdAt, updatedAt, title, content}',
                 'partial category.{id, title}',
-                'partial tags.{id, title}'
+                'partial tags.{id, title}',
             )
             ->join('post.category', 'category')
             ->leftJoin('post.tags', 'tags')
@@ -87,7 +87,7 @@ class PostRepository extends ServiceEntityRepository
         }
 
         if (isset($filters['tag']) && $filters['tag'] instanceof Tag) {
-            $queryBuilder->andWhere('tag IN (:tag)')
+            $queryBuilder->andWhere('tags IN (:tag)')
                 ->setParameter('tag', $filters['tag']);
         }
 

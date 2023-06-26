@@ -240,7 +240,7 @@
       </trans-unit>
       <trans-unit id="powrót do komentarzy">
          <source>powrót do komentarzy</source>
-         <target>powrót do komentarzy</target>
+         <target>powró† do komentarzy</target>
       </trans-unit>
       <trans-unit id="message.comment_not_found">
          <source>message.comment_not_found</source>

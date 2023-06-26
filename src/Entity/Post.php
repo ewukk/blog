@@ -83,12 +83,11 @@ class Post
     /**
      * Comments.
      *
-     * @var Comment
+     * @var Collection<int, Comment>
      */
-    #[ORM\ManyToOne(targetEntity: Comment::class, fetch: 'EXTRA_LAZY')]
-    #[Assert\Type(Comment::class)]
-    #[ORM\JoinColumn(nullable: true, onDelete: 'CASCADE')]
-    private Comment $comment;
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Comment::class)]
+    #[ORM\JoinColumn(nullable: true)]
+    private Collection $comments;
 
     /**
      * Tags.
@@ -118,6 +117,7 @@ class Post
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     /**
@@ -234,27 +234,16 @@ class Post
     }
 
     /**
-     * Getter for comment.
+     * Getter for comments.
      *
-     * @return Comment|null Comment
+     * @return Collection<int, Comment>
+     *
      */
-    public function getComment(): ?Comment
+    public function getComments(): Collection
     {
-        return $this->comment;
+        return $this->comments;
     }
 
-    /**
-     * Setter for comment.
-     *
-     * @param Comment|null $comment Comment
-     * @return Post
-     */
-    public function setComment(?Comment $comment): self
-    {
-        $this->comment = $comment;
-
-        return $this;
-    }
 
     /**
      * Getter for tags.

@@ -7,6 +7,8 @@ namespace App\Entity;
 
 use App\Entity\Enum\UserRole;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -60,14 +62,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password;
 
     /**
-     * Comment.
+     * Comments.
      *
-     * @var Comment
+     * @var Collection<int, Comment>
      */
-    #[ORM\ManyToOne]
-    #[Assert\Type(Comment::class)]
-    private Comment $comment;
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Comment::class)]
+    #[ORM\JoinColumn(nullable: true)]
+    private Collection $comments;
 
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
 
     /**
      * Author.
@@ -138,7 +147,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
         $roles[] = UserRole::ROLE_USER->value;
 
         return array_unique($roles);
@@ -194,61 +202,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function eraseCredentials(): void
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+
     }
 
     /**
      * Getter for comment.
      *
-     * @return Comment|null Comment
-     */
-    public function getComment(): ?Comment
-    {
-        return $this->comment;
-    }
-
-    /**
-     * Setter for comment.
-     *
-     * @param Comment|null $comment Comment
-     * @return User
-     */
-    public function setComment(?Comment $comment): self
-    {
-        $this->comment = $comment;
-
-        return $this;
-    }
-
-    /**
-     * Add comment.
+     * @return Collection<int, Comment>
      *
      */
-    public function addComment(Comment $comment): static
+    public function getComments(): Collection
     {
-        if (!$this->comment->contains($comment)) {
-            $this->comment->add($comment);
-            $comment->setAuthor($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Remove comment.
-     *
-     */
-    public function removeComment(Comment $comment): static
-    {
-        if ($this->comment->removeElement($comment)) {
-            // set the owning side to null (unless already changed)
-            if ($comment->getAuthor() === $this) {
-                $comment->setAuthor(null);
-            }
-        }
-
-        return $this;
+        return $this->comments;
     }
 
     /**

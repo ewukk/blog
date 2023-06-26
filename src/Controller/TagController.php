@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * Class PostController.
+ * Class TagController.
  */
 #[Route('/tag')]
 class TagController extends AbstractController
@@ -34,6 +34,9 @@ class TagController extends AbstractController
 
     /**
      * Constructor.
+     *
+     * @param TagServiceInterface $tagService Tag service interface
+     * @param TranslatorInterface $translator Translator
      */
     public function __construct(TagServiceInterface $tagService, TranslatorInterface $translator)
     {

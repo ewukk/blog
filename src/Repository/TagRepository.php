@@ -28,7 +28,7 @@ class TagRepository extends ServiceEntityRepository
      *
      * @constant int
      */
-    public const PAGINATOR_ITEMS_PER_PAGE = 7;
+    public const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
      * Constructor.
@@ -83,6 +83,6 @@ class TagRepository extends ServiceEntityRepository
     public function delete(Tag $tag): void
     {
         $this->_em->remove($tag);
-
+        $this->_em->flush();
     }
 }

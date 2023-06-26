@@ -1,36 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'comments'|trans }}
+    {{ 'Formula 1 blog - komentarze'|trans }}
 {% endblock %}
 
 {% block body %}
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand mb-0 h1">Formuła 1 blog</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href={{ url('comment_index') }}>Komentarze<span class="sr-only">(aktualnie)</span></a>
-                <a class="nav-item nav-link" href={{ url('category_index') }}>Kategorie</a>
-                <a class="nav-item nav-link" href={{ url('post_index') }}>Posty</a>
-                <a class="nav-item nav-link" href={{ url('tag_index') }}>Tagi</a>
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <a href="{{ url('user_edit', {id: app.user.id}) }}" title="{{ 'action.show'|trans }}" class="{{ 'nav-item nav-link' }}">
-                        {{ 'Konto'|trans }}
-                    </a>
-                {% endif %}
-                {% if is_granted('MANAGE') %}
-                    <a class="nav-item nav-link" href={{ url('user_index') }}>Użytkownicy</a>
-                {% endif %}
-                {% if app.user %}
-                    <a id="logout" class="nav-item nav-link" href="{{ path('app_logout') }}">Wyloguj: {{ app.user.userIdentifier }}</a>
-                {% endif %}
-            </div>
-        </div>
-    </nav>
     <h1>{{ 'Formuła 1 blog - komentarze'|trans }}</h1>
     {% if pagination is defined and pagination.items|length %}
 
@@ -56,6 +31,11 @@
                     <td>{{ comment.author.username }}</td>
                     <td>{{ comment.content }}</td>
                     <td>
+                        {% if is_granted('VIEW', comment) %}
+                            <a href="{{ url('comment_show', {id: comment.id}) }}" title="{{ 'action.show'|trans }}" class="btn btn-warning">
+                                {{ 'zobacz'|trans }}
+                            </a>
+                        {% endif %}
                         {% if is_granted('EDIT', comment) %}
                             <a href="{{ url('comment_edit', {id: comment.id}) }}" title="{{ 'action.edit'|trans }}" class="btn btn-success">
                                 {{ 'edytuj'|trans }}
@@ -64,11 +44,6 @@
                         {% if is_granted('DELETE', comment) %}
                             <a href="{{ url('comment_delete', {id: comment.id}) }}" title="{{ 'action.delete'|trans }}" class="btn btn-danger">
                                 {{ 'usuń'|trans }}
-                            </a>
-                        {% endif %}
-                        {% if is_granted('VIEW', comment) %}
-                            <a href="{{ url('comment_show', {id: comment.id}) }}" title="{{ 'action.show'|trans }}" class="btn btn-warning">
-                                {{ 'zobacz'|trans }}
                             </a>
                         {% endif %}
                     </td>

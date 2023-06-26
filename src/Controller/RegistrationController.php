@@ -7,12 +7,14 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\Type\RegistrationType;
-use App\Service\RegistrationService;
+use App\Security\LoginFormAuthenticator;
 use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 /**
  * Class RegistrationController.
@@ -26,26 +28,22 @@ class RegistrationController extends AbstractController
     private UserService $userService;
 
     /**
-     * Registration service.
-     */
-    private RegistrationService $registrationService;
-
-    /**
      * RegistrationController constructor.
      *
-     * @param RegistrationService $registrationService Registration service
-     * @param UserService         $userService         User service
+     * @param UserService  $userService   User service
      */
-    public function __construct(RegistrationService $registrationService, UserService $userService)
+    public function __construct(UserService $userService)
     {
-        $this->registrationService = $registrationService;
         $this->userService = $userService;
     }
 
     /**
-     * Create action.
+     * Register.
      *
      * @param Request $request HTTP request
+     * @param UserPasswordHasherInterface $userPasswordHasher User password hasher
+     * @param UserAuthenticatorInterface $userAuthenticator User authenticator
+     * @param LoginFormAuthenticator $authenticator Login form authenticator
      *
      * @return Response HTTP response
      */
@@ -54,25 +52,28 @@ class RegistrationController extends AbstractController
         name: 'app_register',
         methods: ['GET', 'POST']
     )]
-    public function create(Request $request): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator): Response
     {
         $user = new User();
-        $form = $this->createForm(RegistrationType::class);
+        $user->setRoles(['ROLE_USER']);
+        $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
+        if($form->isSubmitted() && $form->isValid()){
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $form->get('password')->getData()
+                )
+            );
 
-            if ($this->userService->findOneBy($data['email']) !== null) {
-                $this->addFlash('danger', 'message_email_already_exists');
+            $this->userService->save($user);
 
-                return $this->redirectToRoute('app_register');
-            }
-
-            $this->registrationService->register($data, $user);
-            $this->addFlash('success', 'message_registered_successfully');
-
-            return $this->redirectToRoute('app_login');
+            return $userAuthenticator->authenticateUser(
+                $user,
+                $authenticator,
+                $request
+            );
         }
 
         return $this->render(

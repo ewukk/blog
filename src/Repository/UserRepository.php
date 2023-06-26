@@ -24,7 +24,12 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * Pagination.
      */
-    const PAGINATOR_ITEMS_PER_PAGE = 7;
+    const PAGINATOR_ITEMS_PER_PAGE = 10;
+
+    /**
+     * Password hasher.
+     */
+    private UserPasswordHasherInterface $passwordHasher;
 
     /**
      * Constructor.

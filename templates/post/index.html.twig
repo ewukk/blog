@@ -1,35 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'posts'|trans }}
+    {{ 'Formula 1 blog - posty'|trans }}
 {% endblock %}
 
 {% block body %}
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand mb-0 h1">Formuła 1 blog</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href={{ url('post_index') }}>Posty<span class="sr-only">(aktualnie)</span></a>
-                <a class="nav-item nav-link" href={{ url('category_index') }}>Kategorie</a>
-                <a class="nav-item nav-link" href={{ url('tag_index') }}>Tagi</a>
-                <a class="nav-item nav-link" href={{ url('comment_index') }}>Komentarze</a>
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <a href="{{ url('user_edit', {id: app.user.id}) }}" title="{{ 'action.show'|trans }}" class="{{ 'nav-item nav-link' }}">
-                        {{ 'Konto'|trans }}
-                    </a>
-                {% endif %}
-                {% if is_granted('MANAGE') %}
-                    <a class="nav-item nav-link" href={{ url('user_index') }}>Użytkownicy</a>
-                {% endif %}
-                <a class="nav-item nav-link float-right" href="{{ path('app_logout') }}">Wyloguj: {{ app.user.userIdentifier }}</a>
-
-            </div>
-        </div>
-    </nav>
 
     <h1>{{ 'Formuła 1 blog'|trans }}</h1>
 
