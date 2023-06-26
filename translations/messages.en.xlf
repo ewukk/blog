@@ -334,6 +334,14 @@
          <source>Hasło</source>
          <target>Hasło</target>
       </trans-unit>
+      <trans-unit id="none">
+         <source>none</source>
+         <target>brak</target>
+      </trans-unit>
+      <trans-unit id="Tags">
+         <source>Tags</source>
+         <target>Tagi</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
