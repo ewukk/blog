@@ -17,11 +17,9 @@
         <thead>
         <tr>
             <th>
-                {% if is_granted('MANAGE') %}
-                    <a href="{{ url('tag_create') }}" title="{{ 'action.create'|trans }}" class="{{ 'btn btn-light' }}">
-                        {{ 'stwórz tag'|trans }}
-                    </a>
-                {% endif %}
+                <a href="{{ url('tag_create') }}" title="{{ 'action.create'|trans }}" class="{{ 'btn btn-light' }}">
+                    {{ 'stwórz tag'|trans }}
+                </a>
             </th>
         </tr>
         </thead>
