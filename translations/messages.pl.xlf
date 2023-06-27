@@ -236,11 +236,11 @@
       </trans-unit>
       <trans-unit id="action.back_to_comments">
          <source>action.back_to_comments</source>
-         <target>powró† do komentarzy</target>
+         <target>powrót do komentarzy</target>
       </trans-unit>
       <trans-unit id="powrót do komentarzy">
          <source>powrót do komentarzy</source>
-         <target>powró† do komentarzy</target>
+         <target>powrót do komentarzy</target>
       </trans-unit>
       <trans-unit id="message.comment_not_found">
          <source>message.comment_not_found</source>
