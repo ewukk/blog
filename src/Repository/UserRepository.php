@@ -71,7 +71,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     {
         $hashedPassword = $this->passwordHasher->hashPassword($entity, $entity->getPassword());
         $entity->setPassword($hashedPassword);
-        $entity->setRoles(['ROLE_USER']);
         $this->getEntityManager()->persist($entity);
 
         $this->getEntityManager()->flush();
