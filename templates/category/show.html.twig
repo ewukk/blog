@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'Szczegóły kategorii'|trans({'%id%': category.id|default('')}) }}</h1>
+    <h1>{{ 'Category details'|trans({'%id%': category.id|default('')}) }}</h1>
     {% if category is defined and category|length %}
         <dl class="dl-horizontal">
             <dt>{{ 'Id'|trans }}</dt>
@@ -19,7 +19,7 @@
         </dl>
         <p>
             <a href="{{ url('category_index') }}" title="{{ 'action.back_to_categories'|trans }}" class="{{ 'btn btn-light' }}">
-                {{ 'powrót do kategorii'|trans }}
+                {{ 'back to categories'|trans }}
             </a>
         </p>
     {% else %}

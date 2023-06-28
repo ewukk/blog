@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'Szczegóły komentarza'|trans({'%id%': comment.id|default('')}) }}</h1>
+    <h1>{{ 'Comment details'|trans({'%id%': comment.id|default('')}) }}</h1>
     {% if comment is defined and comment|length %}
         <dl class="dl-horizontal">
             <dt>{{ 'Id'|trans }}</dt>
@@ -19,7 +19,7 @@
         </dl>
         <p>
             <a href="{{ url('comment_index') }}" title="{{ 'action.back_to_comments'|trans }}" class="{{ 'btn btn-light' }}">
-                {{ 'powrót do komentarzy'|trans }}
+                {{ 'back to comments'|trans }}
             </a>
         </p>
     {% else %}

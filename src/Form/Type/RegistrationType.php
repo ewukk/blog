@@ -53,8 +53,8 @@ class RegistrationType extends AbstractType
                         new Length(['min' => 6, 'max' => 191]),
                         new NotBlank(),
                     ] ,
-                    'first_options' => ['label' => 'Hasło'],
-                    'second_options' => ['label' => 'Powtórz hasło'],
+                    'first_options' => ['label' => 'Password'],
+                    'second_options' => ['label' => 'Repeat password'],
                 ],
             );
 

@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Formula 1 blog - posty'|trans }}
+    {{ 'Formula 1 blog - posts'|trans }}
 {% endblock %}
 
 {% block body %}
 
-    <h1>{{ 'Formuła 1 blog'|trans }}</h1>
+    <h1>{{ 'Formula 1 blog'|trans }}</h1>
 
     <table class="buttons">
         <thead>
         <tr>
             <th><a href="{{ url('post_create') }}" title="{{ 'action.create'|trans }}" class="{{ 'btn btn-light' }}">
-                    {{ 'stwórz post'|trans }}
+                    {{ 'create a post'|trans }}
                 </a></th>
         </tr>
         </thead>
@@ -67,21 +67,21 @@
                     <td>
                         {% if is_granted('VIEW', post) %}
                             <a href="{{ url('post_show', {id: post.id}) }}" title="{{ 'action.show'|trans }}" class="{{ 'btn btn-warning' }}">
-                                {{ 'zobacz'|trans }}
+                                {{ 'show'|trans }}
                             </a>
                         {% endif %}
                         {% if is_granted('EDIT', post) %}
                             <a href="{{ url('post_edit', {id: post.id}) }}" title="{{ 'action.edit'|trans }}" class="{{ 'btn btn-success' }}">
-                                {{ 'edytuj'|trans }}
+                                {{ 'edit'|trans }}
                             </a>
                         {% endif %}
                         {% if is_granted('DELETE', post) %}
                             <a href="{{ url('post_delete', {id: post.id}) }}" title="{{ 'action.delete'|trans }}" class="{{ 'btn btn-danger' }}">
-                                {{ 'usuń'|trans }}
+                                {{ 'delete'|trans }}
                             </a>
                         {% endif %}
                             <a href="{{ url('comment_create', {id: post.id}) }}" title="{{ 'action.create'|trans }}" class="{{ 'btn btn-secondary' }}">
-                                {{ 'dodaj komentarz'|trans }}
+                                {{ 'add comment'|trans }}
                             </a>
                     </td>
                 </tr>

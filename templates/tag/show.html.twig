@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'Szczegóły tagu'|trans({'%id%': tag.id|default('')}) }}</h1>
+    <h1>{{ 'Tag details'|trans({'%id%': tag.id|default('')}) }}</h1>
     {% if tag is defined and tag|length %}
         <dl class="dl-horizontal">
             <dt>{{ 'Id'|trans }}</dt>
@@ -19,7 +19,7 @@
         </dl>
         <p>
             <a href="{{ url('tag_index') }}" title="{{ 'action.back_to_tags'|trans }}" class="{{ 'btn btn-light' }}">
-                {{ 'powrót do tagów'|trans }}
+                {{ 'back to tags'|trans }}
             </a>
         </p>
     {% else %}

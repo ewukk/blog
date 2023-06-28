@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Formula 1 blog - użytkownicy'|trans }}
+    {{ 'Formula 1 blog - users'|trans }}
 {% endblock %}
 
 {% block body %}
 
-    <h1>{{ 'Formuła 1 blog - użytkownicy'|trans }}</h1>
+    <h1>{{ 'Formula 1 blog - users'|trans }}</h1>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -28,10 +28,10 @@
                     <td>{{ user.email }}</td>
                     <td>
                         <a href="{{ url('user_show', {id: user.id}) }}" title="{{ 'action.show'|trans }}" class="btn btn-warning">
-                            {{ 'zobacz'|trans }}
+                            {{ 'show'|trans }}
                         </a>
                         <a href="{{ url('user_edit', {id: user.id}) }}" title="{{ 'action.edit'|trans }}" class="btn btn-success">
-                            {{ 'edytuj'|trans }}
+                            {{ 'edit'|trans }}
                         </a>
                     </td>
                 </tr>

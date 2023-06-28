@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Formula 1 blog - kategorie'|trans }}
+    {{ 'Formula 1 blog - categories'|trans }}
 {% endblock %}
 
 {% block body %}
 
-    <h1>{{ 'Formuła 1 blog - kategorie'|trans }}</h1>
+    <h1>{{ 'Formula 1 blog - categories'|trans }}</h1>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -17,7 +17,7 @@
         <thead>
         <tr>
             <th><a href="{{ url('category_create') }}" title="{{ 'action.create'|trans }}" class="{{ 'btn btn-light' }}">
-                    {{ 'stwórz kategorię'|trans }}
+                    {{ 'create a category'|trans }}
                 </a>
             </th>
         </tr>
@@ -43,17 +43,17 @@
                     <td>
                         {% if is_granted('EDIT', category) %}
                             <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action.edit'|trans }}" class="btn btn-success">
-                                {{ 'edytuj'|trans }}
+                                {{ 'edit'|trans }}
                             </a>
                         {% endif %}
                         {% if is_granted('VIEW', category) %}
                             <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action.show'|trans }}" class="btn btn-warning">
-                                {{ 'zobacz'|trans }}
+                                {{ 'show'|trans }}
                             </a>
                         {% endif %}
                         {% if is_granted('DELETE', category) %}
                             <a href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'action.delete'|trans }}" class="btn btn-danger">
-                                {{ 'usuń'|trans }}
+                                {{ 'delete'|trans }}
                             </a>
                         {% endif %}
                     </td>

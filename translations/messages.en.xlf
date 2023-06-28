@@ -4,15 +4,15 @@
     <body>
       <trans-unit id="actions">
         <source>Actions</source>
-        <target>Akcje</target>
+        <target>Actions</target>
       </trans-unit>
       <trans-unit id="back to posts">
          <source>back to posts</source>
-         <target>powrót</target>
+         <target>back to posts</target>
       </trans-unit>
       <trans-unit id="Password">
           <source>Password</source>
-          <target>Hasło</target>
+          <target>Password</target>
       </trans-unit>
       <trans-unit id="id">
         <source>id</source>
@@ -20,131 +20,79 @@
       </trans-unit>
       <trans-unit id="title">
         <source>Title</source>
-        <target>Tytuł</target>
+        <target>Title</target>
       </trans-unit>
       <trans-unit id="Content">
         <source>Content</source>
-        <target>Treść</target>
+        <target>Content</target>
       </trans-unit>
       <trans-unit id="Author">
          <source>Author</source>
-         <target>Autor</target>
+         <target>Author</target>
       </trans-unit>
       <trans-unit id="Category">
           <source>Category</source>
-          <target>Kategoria</target>
+          <target>Category</target>
       </trans-unit>
       <trans-unit id="Created_at">
            <source>Created_at</source>
-           <target>Utworzono</target>
+           <target>Created_at</target>
       </trans-unit>
       <trans-unit id="Updated_at">
            <source>Updated_at</source>
-           <target>Zmodyfikowano</target>
+           <target>Updated_at</target>
       </trans-unit>
       <trans-unit id="Post title">
            <source>Post title</source>
-           <target>Tytuł postu</target>
+           <target>Post title</target>
       </trans-unit>
       <trans-unit id="tags">
         <source>Tag</source>
-        <target>Tagi</target>
+        <target>Tag</target>
       </trans-unit>
       <trans-unit id="message.empty_list">
         <source>message.empty_list</source>
-        <target>Lista jest pusta</target>
+        <target>List is empty</target>
       </trans-unit>
       <trans-unit id="message.record_not_found">
         <source>message.record_not_found</source>
-        <target>Nie znaleziono postu</target>
-      </trans-unit>
-      <trans-unit id="Formula 1 blog - posty">
-         <source>Formula 1 blog - posty</source>
-         <target>Formula 1 blog - posty</target>
+        <target>Post was not found</target>
       </trans-unit>
       <trans-unit id="action.show">
          <source>action.show</source>
-         <target>zobacz</target>
-      </trans-unit>
-      <trans-unit id="Konto">
-         <source>Konto</source>
-         <target>Konto</target>
-      </trans-unit>
-      <trans-unit id="Formuła 1 blog">
-         <source>Formuła 1 blog</source>
-         <target>Formuła 1 blog</target>
+         <target>show</target>
       </trans-unit>
       <trans-unit id="action.create">
          <source>action.create</source>
-         <target>stwórz</target>
-      </trans-unit>
-      <trans-unit id="stwórz post">
-         <source>stwórz post</source>
-         <target>stwórz post</target>
+         <target>create</target>
       </trans-unit>
       <trans-unit id="Id">
          <source>Id</source>
          <target>Id</target>
       </trans-unit>
-      <trans-unit id="zobacz">
-         <source>zobacz</source>
-         <target>zobacz</target>
-      </trans-unit>
       <trans-unit id="action.edit">
          <source>action.edit</source>
-         <target>edytuj</target>
-      </trans-unit>
-      <trans-unit id="edytuj">
-         <source>edytuj</source>
-         <target>edytuj</target>
+         <target>edit</target>
       </trans-unit>
       <trans-unit id="action.delete">
          <source>action.delete</source>
-         <target>usuń</target>
+         <target>delete</target>
       </trans-unit>
-      <trans-unit id="usuń">
-         <source>usuń</source>
-         <target>usuń</target>
+      <trans-unit id="add comment">
+         <source>add comment</source>
+         <target>add comment</target>
       </trans-unit>
-      <trans-unit id="dodaj komentarz">
-         <source>dodaj komentarz</source>
-         <target>dodaj komentarz</target>
+      <trans-unit id="Formula 1 blog - categories">
+         <source>Formula 1 blog - categories</source>
+         <target>Formula 1 blog - categories</target>
       </trans-unit>
-      <trans-unit id="Formula 1 blog - kategorie">
-         <source>Formula 1 blog - kategorie</source>
-         <target>Formuła 1 blog - kategorie</target>
+      <trans-unit id="Formula 1 blog - tags">
+         <source>Formula 1 blog - tags</source>
+         <target>Formula 1 blog - tags</target>
       </trans-unit>
-      <trans-unit id="Formuła 1 blog - kategorie">
-         <source>Formuła 1 blog - kategorie</source>
-         <target>Formuła 1 blog - kategorie</target>
-      </trans-unit>
-      <trans-unit id="stwórz kategorię">
-         <source>stwórz kategorię</source>
-         <target>stwórz kategorię</target>
-      </trans-unit>
-      <trans-unit id="Formula 1 blog - tagi">
-         <source>Formula 1 blog - tagi</source>
-         <target>Formuła 1 blog - tagi</target>
-      </trans-unit>
-      <trans-unit id="Formuła 1 blog - tagi">
-         <source>Formuła 1 blog - tagi</source>
-         <target>Formuła 1 blog - tagi</target>
-      </trans-unit>
-      <trans-unit id="Formula 1 blog - komentarze">
-         <source>Formula 1 blog - komentarze</source>
-         <target>Formuła 1 blog - komentarze</target>
-      </trans-unit>
-      <trans-unit id="Formuła 1 blog - komentarze">
-         <source>Formuła 1 blog - komentarze</source>
-         <target>Formuła 1 blog - komentarze</target>
-      </trans-unit>
-      <trans-unit id="powrót do postów">
-         <source>powrót do postów</source>
-         <target>powrót do postów</target>
-      </trans-unit>
-      <trans-unit id="zapisz">
-         <source>zapisz</source>
-         <target>zapisz</target>
+      <trans-unit id="Formula 1 blog - comments">
+         <source>Formula 1 blog - comments</source>
+         <target>Formula 1 blog - comments</target>
       </trans-unit>
       <trans-unit id="Email">
          <source>Email</source>
@@ -152,195 +100,243 @@
       </trans-unit>
       <trans-unit id="Account">
          <source>Account</source>
-         <target>Konto</target>
+         <target>Account</target>
       </trans-unit>
-      <trans-unit id="Formula 1 blog - użytkownicy">
-         <source>Formula 1 blog - użytkownicy</source>
-         <target>Formuła 1 blog - użytkownicy</target>
+      <trans-unit id="Repeat password">
+            <source>Repeat password</source>
+            <target>Repeat password</target>
       </trans-unit>
-      <trans-unit id="Formuła 1 blog - użytkownicy">
-         <source>Formuła 1 blog - użytkownicy</source>
-         <target>Formuła 1 blog - użytkownicy</target>
+      <trans-unit id="Formula 1 blog - users">
+         <source>Formula 1 blog - users</source>
+         <target>Formula 1 blog - users</target>
       </trans-unit>
-      <trans-unit id="stwórz tag">
-         <source>stwórz tag</source>
-         <target>stwórz tag</target>
+      <trans-unit id="create a tag">
+         <source>create a tag</source>
+         <target>create a tag</target>
       </trans-unit>
       <trans-unit id="message.created_successfully">
          <source>message.created_successfully</source>
-         <target>utworzono pomyślnie</target>
+         <target>created successfully</target>
       </trans-unit>
       <trans-unit id="message.category_contains_posts">
          <source>message.category_contains_posts</source>
-         <target>kategoria jest przypisana do postu</target>
+         <target>category contains posts</target>
       </trans-unit>
       <trans-unit id="message.deleted_successfully">
          <source>message.deleted_successfully</source>
-         <target>usunięto pomyślnie</target>
+         <target>deleted successfully</target>
       </trans-unit>
       <trans-unit id="message.edited_successfully">
          <source>message.edited_successfully</source>
-         <target>edycja przebiegła pomyślnie</target>
+         <target>edited successfully</target>
       </trans-unit>
       <trans-unit id="message.tag_not_found">
          <source>message.tag_not_found</source>
-         <target>nie znaleziono tagu</target>
+         <target>tag not found</target>
       </trans-unit>
-      <trans-unit id="Stwórz kategorię">
-         <source>Stwórz kategorię</source>
-         <target>Stwórz kategorię</target>
+      <trans-unit id="Create a category">
+         <source>Create a category</source>
+         <target>Create a category</target>
       </trans-unit>
-      <trans-unit id="Usuń kategorię">
-         <source>Usuń kategorię</source>
-         <target>Usuń kategorię</target>
+      <trans-unit id="Delete category">
+         <source>Delete category</source>
+         <target>Delete category</target>
       </trans-unit>
-      <trans-unit id="Edytuj kategorię">
-         <source>Edytuj kategorię</source>
-         <target>Edytuj kategorię</target>
+      <trans-unit id="Edit category">
+         <source>Edit category</source>
+         <target>Edit category</target>
       </trans-unit>
       <trans-unit id="category details">
          <source>category details</source>
-         <target>Szczegóły kategorii</target>
+         <target>category details</target>
       </trans-unit>
-      <trans-unit id="Szczegóły kategorii">
-         <source>Szczegóły kategorii</source>
-         <target>Szczegóły kategorii</target>
+      <trans-unit id="Category details">
+         <source>Category details</source>
+         <target>Category details</target>
       </trans-unit>
       <trans-unit id="action.back_to_categories">
          <source>action.back_to_categories</source>
-         <target>powrót do kategorii</target>
+         <target>back to categories</target>
       </trans-unit>
-      <trans-unit id="powrót do kategorii">
-         <source>powrót do kategorii</source>
-         <target>powrót do kategorii</target>
+      <trans-unit id="Create a comment">
+         <source>Create a comment</source>
+         <target>Create a comment</target>
       </trans-unit>
-      <trans-unit id="Stwórz komentarz">
-         <source>Stwórz komentarz</source>
-         <target>Stwórz komentarz</target>
+      <trans-unit id="Delete comment">
+         <source>Delete comment</source>
+         <target>Delete comment</target>
       </trans-unit>
-      <trans-unit id="Usuń komentarz">
-         <source>Usuń komentarz</source>
-         <target>Usuń komentarz</target>
-      </trans-unit>
-      <trans-unit id="Edytuj komentarz">
-         <source>Edytuj komentarz</source>
-         <target>Edytuj komentarz</target>
+      <trans-unit id="Edit comment">
+         <source>Edit comment</source>
+         <target>Edit comment</target>
       </trans-unit>
       <trans-unit id="comment_details">
          <source>comment_details</source>
-         <target>Szczegóły komentarza</target>
+         <target>comment details</target>
       </trans-unit>
-      <trans-unit id="Szczegóły komentarza">
-         <source>Szczegóły komentarza</source>
-         <target>Szczegóły komentarza</target>
+      <trans-unit id="Comment details">
+         <source>Comment details</source>
+         <target>Comment details</target>
       </trans-unit>
       <trans-unit id="action.back_to_comments">
          <source>action.back_to_comments</source>
-         <target>powrót do komentarzy</target>
-      </trans-unit>
-      <trans-unit id="powrót do komentarzy">
-         <source>powrót do komentarzy</source>
-         <target>powrót do komentarzy</target>
+         <target>back to comments</target>
       </trans-unit>
       <trans-unit id="message.comment_not_found">
          <source>message.comment_not_found</source>
-         <target>nie znaleziono komentarza</target>
+         <target>comment not found</target>
       </trans-unit>
       <trans-unit id="message.form_error">
          <source>message.form_error</source>
-         <target>błąd w formularzu</target>
+         <target>form error</target>
       </trans-unit>
-      <trans-unit id="Stwórz post">
-         <source>Stwórz post</source>
-         <target>Stwórz post</target>
+      <trans-unit id="Create a post">
+         <source>Create a post</source>
+         <target>Create a post</target>
       </trans-unit>
-      <trans-unit id="Usuń post">
-         <source>Usuń post</source>
-         <target>Usuń post</target>
+      <trans-unit id="Delete post">
+         <source>Delete post</source>
+         <target>Delete post</target>
       </trans-unit>
-      <trans-unit id="Edytuj post">
-         <source>Edytuj post</source>
-         <target>Edytuj post</target>
+      <trans-unit id="Edit post">
+         <source>Edit post</source>
+         <target>Edit post</target>
+      </trans-unit>
+      <trans-unit id="action.back_to_users">
+         <source>action.back_to_users</source>
+         <target>back to users</target>
+      </trans-unit>
+      <trans-unit id="back to users">
+         <source>back to users</source>
+         <target>back to users</target>
       </trans-unit>
       <trans-unit id="post details">
          <source>post details</source>
-         <target>Szczegóły postu</target>
+         <target>post details</target>
       </trans-unit>
-      <trans-unit id="Szczegóły postu">
-         <source>Szczegóły postu</source>
-         <target>Szczegóły postu</target>
+      <trans-unit id="Post details">
+         <source>Post details</source>
+         <target>Post details</target>
       </trans-unit>
-      <trans-unit id="Tagi">
-         <source>Tagi</source>
-         <target>Tagi</target>
+      <trans-unit id="Tags">
+         <source>Tags</source>
+         <target>Tags</target>
       </trans-unit>
       <trans-unit id="action.back_to_posts">
          <source>action.back_to_posts</source>
-         <target>powrót do postów</target>
+         <target>back to posts</target>
       </trans-unit>
       <trans-unit id="login">
          <source>login</source>
          <target>login</target>
       </trans-unit>
-      <trans-unit id="powrót">
-         <source>powrót</source>
-         <target>powrót</target>
+      <trans-unit id="back">
+         <source>back</source>
+         <target>back</target>
       </trans-unit>
       <trans-unit id="register">
          <source>register</source>
-         <target>Zarejestruj się</target>
+         <target>Register</target>
       </trans-unit>
-      <trans-unit id="Zarejestruj się">
-         <source>Zarejestruj się</source>
-         <target>Zarejestruj się</target>
+      <trans-unit id="Register">
+         <source>Register</source>
+         <target>Register</target>
       </trans-unit>
-      <trans-unit id="Stwórz tag">
-         <source>Stwórz tag</source>
-         <target>Stwórz tag</target>
+      <trans-unit id="Create a tag">
+         <source>Create a tag</source>
+         <target>Create a tag</target>
       </trans-unit>
-      <trans-unit id="Usuń tag">
-         <source>Usuń tag</source>
-         <target>Usuń tag</target>
+      <trans-unit id="Delete a tag">
+         <source>Delete a tag</source>
+         <target>Delete a tag</target>
       </trans-unit>
-      <trans-unit id="Edytuj tag">
-         <source>Edytuj tag</source>
-         <target>Edytuj tag</target>
+      <trans-unit id="Edit tag">
+         <source>Edit tag</source>
+         <target>Edit tag</target>
       </trans-unit>
       <trans-unit id="tag_details">
          <source>tag_details</source>
-         <target>Szczegóły tagu</target>
+         <target>Tag details</target>
       </trans-unit>
-      <trans-unit id="Szczegóły tagu">
-         <source>Szczegóły tagu</source>
-         <target>Szczegóły tagu</target>
+      <trans-unit id="Tag details">
+         <source>Tag details</source>
+         <target>Tag details</target>
       </trans-unit>
       <trans-unit id="action.back_to_tags">
          <source>action.back_to_tags</source>
-         <target>powrót do tagów</target>
+         <target>back to tags</target>
       </trans-unit>
-      <trans-unit id="powrót do tagów">
-         <source>powrót do tagów</source>
-         <target>powrót do tagów</target>
+      <trans-unit id="back to tags">
+         <source>back to tags</source>
+         <target>back to tags</target>
       </trans-unit>
       <trans-unit id="User details">
          <source>User details</source>
-         <target>Szczegóły użytkownika</target>
-      </trans-unit>
-      <trans-unit id="Szczegóły użytkownika">
-         <source>Szczegóły użytkownika</source>
-         <target>Szczegóły użytkownika</target>
-      </trans-unit>
-      <trans-unit id="Hasło">
-         <source>Hasło</source>
-         <target>Hasło</target>
+         <target>User details</target>
       </trans-unit>
       <trans-unit id="none">
          <source>none</source>
-         <target>brak</target>
+         <target>none</target>
       </trans-unit>
-      <trans-unit id="Tags">
-         <source>Tags</source>
-         <target>Tagi</target>
+      <trans-unit id="create a post">
+         <source>create a post</source>
+         <target>create a post</target>
+      </trans-unit>
+      <trans-unit id="save">
+         <source>save</source>
+         <target>save</target>
+      </trans-unit>
+      <trans-unit id="Delete a category">
+         <source>Delete a category</source>
+         <target>Delete a category</target>
+      </trans-unit>
+      <trans-unit id="delete">
+         <source>delete</source>
+         <target>delete</target>
+      </trans-unit>
+      <trans-unit id="Edit a category">
+         <source>Edit a category</source>
+         <target>Edit a category</target>
+      </trans-unit>
+      <trans-unit id="create a category">
+         <source>create a category</source>
+         <target>create a category</target>
+      </trans-unit>
+      <trans-unit id="edit">
+         <source>edit</source>
+         <target>edit</target>
+      </trans-unit>
+      <trans-unit id="show">
+         <source>show</source>
+         <target>show</target>
+      </trans-unit>
+      <trans-unit id="back to categories">
+         <source>back to categories</source>
+         <target>back to categories</target>
+      </trans-unit>
+      <trans-unit id="Delete a comment">
+         <source>Delete a comment</source>
+         <target>Delete a comment</target>
+      </trans-unit>
+      <trans-unit id="Edit a comment">
+         <source>Edit a comment</source>
+         <target>Edit a comment</target>
+      </trans-unit>
+      <trans-unit id="back to comments">
+         <source>back to comments</source>
+         <target>back to comments</target>
+      </trans-unit>
+      <trans-unit id="Delete a post">
+         <source>Delete a post</source>
+         <target>Delete a post</target>
+      </trans-unit>
+      <trans-unit id="Formula 1 blog - posts">
+         <source>Formula 1 blog - posts</source>
+         <target>Formula 1 blog - posts</target>
+      </trans-unit>
+      <trans-unit id="Formula 1 blog">
+         <source>Formula 1 blog</source>
+         <target>Formula 1 blog</target>
       </trans-unit>
     </body>
   </file>

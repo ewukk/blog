@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Formula 1 blog - komentarze'|trans }}
+    {{ 'Formula 1 blog - comments'|trans }}
 {% endblock %}
 
 {% block body %}
 
-    <h1>{{ 'Formuła 1 blog - komentarze'|trans }}</h1>
+    <h1>{{ 'Formula 1 blog - comments'|trans }}</h1>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -33,17 +33,17 @@
                     <td>
                         {% if is_granted('VIEW', comment) %}
                             <a href="{{ url('comment_show', {id: comment.id}) }}" title="{{ 'action.show'|trans }}" class="btn btn-warning">
-                                {{ 'zobacz'|trans }}
+                                {{ 'show'|trans }}
                             </a>
                         {% endif %}
                         {% if is_granted('EDIT', comment) %}
                             <a href="{{ url('comment_edit', {id: comment.id}) }}" title="{{ 'action.edit'|trans }}" class="btn btn-success">
-                                {{ 'edytuj'|trans }}
+                                {{ 'edit'|trans }}
                             </a>
                         {% endif %}
                         {% if is_granted('DELETE', comment) %}
                             <a href="{{ url('comment_delete', {id: comment.id}) }}" title="{{ 'action.delete'|trans }}" class="btn btn-danger">
-                                {{ 'usuń'|trans }}
+                                {{ 'delete'|trans }}
                             </a>
                         {% endif %}
                     </td>
