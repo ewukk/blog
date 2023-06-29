@@ -342,6 +342,34 @@
             <source>Log in</source>
             <target>Zaloguj się</target>
       </trans-unit>
+      <trans-unit id="title.edit_password">
+         <source>title.edit_password</source>
+         <target>Edycja hasła</target>
+      </trans-unit>
+      <trans-unit id="title.user_register">
+         <source>title.user_register</source>
+         <target>Zarejestruj się</target>
+      </trans-unit>
+      <trans-unit id="action.register">
+         <source>action.register</source>
+         <target>Rejestracja</target>
+      </trans-unit>
+      <trans-unit id="action.edit_email">
+         <source>action.edit_email</source>
+         <target>Edycja emaila</target>
+      </trans-unit>
+      <trans-unit id="edit email">
+         <source>edit email</source>
+         <target>edytuj email</target>
+      </trans-unit>
+      <trans-unit id="action.edit_password">
+         <source>action.edit_password</source>
+         <target>Edycja hasła</target>
+      </trans-unit>
+      <trans-unit id="edit password">
+         <source>edit password</source>
+         <target>edytuj hasło</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

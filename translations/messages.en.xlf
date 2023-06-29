@@ -106,6 +106,34 @@
             <source>Repeat password</source>
             <target>Repeat password</target>
       </trans-unit>
+      <trans-unit id="title.edit_password">
+         <source>title.edit_password</source>
+         <target>Edit password</target>
+      </trans-unit>
+      <trans-unit id="title.user_register">
+         <source>title.user_register</source>
+         <target>User register</target>
+      </trans-unit>
+      <trans-unit id="action.register">
+         <source>action.register</source>
+         <target>Register</target>
+      </trans-unit>
+      <trans-unit id="action.edit_email">
+         <source>action.edit_email</source>
+         <target>Edit email</target>
+      </trans-unit>
+      <trans-unit id="edit email">
+         <source>edit email</source>
+         <target>edit email</target>
+      </trans-unit>
+      <trans-unit id="action.edit_password">
+         <source>action.edit_password</source>
+         <target>Edit password</target>
+      </trans-unit>
+      <trans-unit id="edit password">
+         <source>edit password</source>
+         <target>edit password</target>
+      </trans-unit>
       <trans-unit id="Formula 1 blog - users">
          <source>Formula 1 blog - users</source>
          <target>Formula 1 blog - users</target>

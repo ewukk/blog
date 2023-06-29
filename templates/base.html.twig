@@ -26,7 +26,7 @@
             <a class="nav-item nav-link" href={{ url('tag_index') }}>Tagi</a>
             <a class="nav-item nav-link" href={{ url('comment_index') }}>Komentarze</a>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <a href="{{ url('user_edit', {id: app.user.id}) }}" title="{{ 'action.show'|trans }}" class="{{ 'nav-item nav-link' }}">
+                <a href="{{ url('user_show', {id: app.user.id}) }}" title="{{ 'action.show'|trans }}" class="{{ 'nav-item nav-link' }}">
                     {{ 'Account'|trans }}
                 </a>
             {% endif %}

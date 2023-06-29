@@ -9,6 +9,7 @@ use App\Entity\User;
 use App\Repository\UserRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
  * Class UserService.
@@ -31,14 +32,20 @@ class UserService implements UserServiceInterface
     private CommentServiceInterface $commentService;
 
     /**
+     * Password hasher.
+     */
+    private UserPasswordHasherInterface $passwordHasher;
+
+    /**
      * UserService constructor.
      *
      * @param CommentServiceInterface $commentService Comment service
      * @param UserRepository     $userRepository User repository
      * @param PaginatorInterface $paginator      Paginator
      */
-    public function __construct(CommentServiceInterface $commentService, UserRepository $userRepository, PaginatorInterface $paginator)
+    public function __construct(UserPasswordHasherInterface $passwordHasher, CommentServiceInterface $commentService, UserRepository $userRepository, PaginatorInterface $paginator)
     {
+        $this->passwordHasher = $passwordHasher;
         $this->commentService = $commentService;
         $this->userRepository = $userRepository;
         $this->paginator = $paginator;
@@ -68,6 +75,22 @@ class UserService implements UserServiceInterface
      */
     public function save(User $user): void
     {
+        $this->userRepository->save($user);
+    }
+
+    /**
+     * Save entity with hashed password.
+     *
+     * @param User $user User entity
+     */
+    public function savePassword(User $user): void
+    {
+        $user->setPassword(
+            $this->passwordHasher->hashPassword(
+                $user,
+                $user->getPassword()
+            )
+        );
         $this->userRepository->save($user);
     }
 

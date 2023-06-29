@@ -5,7 +5,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Enum\UserRole;
 use App\Entity\User;
+use App\Form\Type\EditPasswordType;
+use App\Form\Type\RegistrationType;
 use App\Form\Type\UserType;
 use App\Service\UserServiceInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -76,10 +79,52 @@ class UserController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET'
     )]
-    #[IsGranted('MANAGE')]
+//    #[IsGranted('MANAGE')]
     public function show(user $user): Response
     {
         return $this->render('user/show.html.twig', ['user' => $user]);
+    }
+
+    /**
+     * Edit password action.
+     *
+     * @param Request $request HTTP request
+     * @param User    $user    User entity
+     *
+     * @return Response HTTP response
+     */
+    #[Route('/{id}/password', name: 'edit_password', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    public function passwordEdit(Request $request, User $user): Response
+    {
+            $form = $this->createForm(
+                EditPasswordType::class,
+                $user,
+                [
+                    'method' => 'PUT',
+                    'action' => $this->generateUrl('edit_password', ['id' => $user->getId()]),
+                ]
+            );
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $this->userService->savePassword($user);
+
+                $this->addFlash(
+                    'success',
+                    $this->translator->trans('message.edited_successfully')
+                );
+
+                return $this->redirectToRoute('post_index');
+            }
+
+            return $this->render(
+                'user/password.html.twig',
+                [
+                    'form' => $form->createView(),
+                    'user' => $user,
+                ]
+            );
+
     }
 
     /**
@@ -125,5 +170,43 @@ class UserController extends AbstractController
         );
     }
 
+    /**
+     * Register user action.
+     *
+     * @param Request $request HTTP request
+     *
+     * @return Response HTTP response
+     */
+    #[Route('/register', name: 'user_register', methods: 'GET|POST')]
+    public function register(Request $request): Response
+    {
+        $user = new User();
+        $form = $this->createForm(
+            RegistrationType::class,
+            $user,
+            ['action' => $this->generateUrl('user_register')]
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setRoles([UserRole::ROLE_USER->value]);
+            $this->userService->savePassword($user);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.created_successfully')
+            );
+
+            return $this->redirectToRoute('post_index');
+        }
+
+        return $this->render(
+            'user/register.html.twig',
+            [
+                'form' => $form->createView(),
+                'user' => $user,
+            ]
+        );
+    }
 
 }

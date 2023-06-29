@@ -124,7 +124,6 @@ class CommentController extends AbstractController
      */
     #[Route('/{id}/edit', name: 'comment_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     #[IsGranted('EDIT', subject: 'comment')]
-    #[IsGranted('MANAGE')]
     public function edit(Request $request, Comment $comment): Response
     {
         $form = $this->createForm(
