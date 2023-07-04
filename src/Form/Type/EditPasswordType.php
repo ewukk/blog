@@ -30,21 +30,20 @@ class EditPasswordType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-            $builder->add(
-                'password',
-                RepeatedType::class,
-                [
-                    'type' => PasswordType::class,
-                    'required' => true,
-                    'constraints' => [
-                        new Length(['min' => 6, 'max' => 191]),
-                        new NotBlank(),
-                    ] ,
-                    'first_options' => ['label' => 'Password'],
-                    'second_options' => ['label' => 'Repeat password'],
+        $builder->add(
+            'password',
+            RepeatedType::class,
+            [
+                'type' => PasswordType::class,
+                'required' => true,
+                'constraints' => [
+                    new Length(['min' => 6, 'max' => 191]),
+                    new NotBlank(),
                 ],
-            );
-
+                'first_options' => ['label' => 'Password'],
+                'second_options' => ['label' => 'Repeat password'],
+            ],
+        );
     }
 
     /**

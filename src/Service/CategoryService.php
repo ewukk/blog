@@ -34,13 +34,12 @@ class CategoryService implements CategoryServiceInterface
      */
     private PaginatorInterface $paginator;
 
-
     /**
      * Constructor.
      *
      * @param CategoryRepository $categoryRepository Category repository
-     * @param PostRepository $postRepository Post repository
-     * @param PaginatorInterface $paginator Paginator
+     * @param PostRepository     $postRepository     Post repository
+     * @param PaginatorInterface $paginator          Paginator
      */
     public function __construct(CategoryRepository $categoryRepository, PostRepository $postRepository, PaginatorInterface $paginator)
     {
@@ -52,7 +51,7 @@ class CategoryService implements CategoryServiceInterface
     /**
      * Get paginated list.
      *
-     * @param int                $page    Page number
+     * @param int $page Page number
      *
      * @return PaginationInterface<SlidingPagination> Paginated list
      */
@@ -116,5 +115,4 @@ class CategoryService implements CategoryServiceInterface
     {
         return $this->categoryRepository->findOneById($id);
     }
-
 }

@@ -47,8 +47,6 @@ class TagVoter extends Voter
 
     /**
      * Security helper.
-     *
-     * @var Security
      */
     private Security $security;
 
@@ -73,7 +71,7 @@ class TagVoter extends Voter
     protected function supports(string $attribute, $subject): bool
     {
         return in_array($attribute, [self::EDIT, self::VIEW, self::DELETE, self::MANAGE])
-            && ($subject === null || $subject instanceof Tag);
+            && (null === $subject || $subject instanceof Tag);
     }
 
     /**
@@ -117,7 +115,6 @@ class TagVoter extends Voter
     private function canEdit(User $user): bool
     {
         return $this->security->isGranted('ROLE_ADMIN');
-
     }
 
     /**
@@ -130,7 +127,6 @@ class TagVoter extends Voter
     private function canView(User $user): bool
     {
         return true;
-
     }
 
     /**
@@ -157,4 +153,3 @@ class TagVoter extends Voter
         return $this->security->isGranted('ROLE_ADMIN');
     }
 }
-

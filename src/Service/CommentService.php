@@ -28,8 +28,8 @@ class CommentService implements CommentServiceInterface
     /**
      * Constructor.
      *
-     * @param CommentRepository     $commentRepository Comment repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param CommentRepository  $commentRepository Comment repository
+     * @param PaginatorInterface $paginator         Paginator
      */
     public function __construct(CommentRepository $commentRepository, PaginatorInterface $paginator)
     {
@@ -53,7 +53,6 @@ class CommentService implements CommentServiceInterface
         );
     }
 
-
     /**
      * Save entity.
      *
@@ -73,6 +72,4 @@ class CommentService implements CommentServiceInterface
     {
         $this->commentRepository->delete($comment);
     }
-
-
 }

@@ -47,8 +47,6 @@ class CommentVoter extends Voter
 
     /**
      * Security helper.
-     *
-     * @var Security
      */
     private Security $security;
 
@@ -73,7 +71,7 @@ class CommentVoter extends Voter
     protected function supports(string $attribute, $subject): bool
     {
         return in_array($attribute, [self::EDIT, self::VIEW, self::DELETE, self::MANAGE])
-            && ($subject === null || $subject instanceof Comment);
+            && (null === $subject || $subject instanceof Comment);
     }
 
     /**
@@ -111,20 +109,20 @@ class CommentVoter extends Voter
      * Checks if user can edit Comment.
      *
      * @param Comment $comment Comment entity
-     * @param User $user User
+     * @param User    $user    User
      *
      * @return bool Result
      */
     private function canEdit(Comment $comment, User $user): bool
     {
-        if($comment->getAuthor() === $user){
+        if ($comment->getAuthor() === $user) {
             return true;
         }
-        if($this->security->isGranted('ROLE_ADMIN')){
+        if ($this->security->isGranted('ROLE_ADMIN')) {
             return true;
         }
-        return false;
 
+        return false;
     }
 
     /**
@@ -137,25 +135,25 @@ class CommentVoter extends Voter
     private function canView(User $user): bool
     {
         return true;
-
     }
 
     /**
      * Checks if user can delete Comment.
      *
      * @param Comment $comment Comment entity
-     * @param User $user User
+     * @param User    $user    User
      *
      * @return bool Result
      */
     private function canDelete(Comment $comment, User $user): bool
     {
-        if($comment->getAuthor() === $user){
+        if ($comment->getAuthor() === $user) {
             return true;
         }
-        if($this->security->isGranted('ROLE_ADMIN')){
+        if ($this->security->isGranted('ROLE_ADMIN')) {
             return true;
         }
+
         return false;
     }
 

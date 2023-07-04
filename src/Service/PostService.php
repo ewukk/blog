@@ -45,18 +45,13 @@ class PostService implements PostServiceInterface
      * Constructor.
      *
      * @param CategoryServiceInterface $categoryService Category service
-     * @param PaginatorInterface $paginator Paginator
-     * @param TagServiceInterface $tagService Tag service
-     * @param CommentServiceInterface $commentService Comment service
-     * @param PostRepository $postRepository Post repository
+     * @param PaginatorInterface       $paginator       Paginator
+     * @param TagServiceInterface      $tagService      Tag service
+     * @param CommentServiceInterface  $commentService  Comment service
+     * @param PostRepository           $postRepository  Post repository
      */
-    public function __construct(
-        CategoryServiceInterface $categoryService,
-        PaginatorInterface $paginator,
-        TagServiceInterface $tagService,
-        CommentServiceInterface $commentService,
-        PostRepository $postRepository
-    ) {
+    public function __construct(CategoryServiceInterface $categoryService, PaginatorInterface $paginator, TagServiceInterface $tagService, CommentServiceInterface $commentService, PostRepository $postRepository)
+    {
         $this->categoryService = $categoryService;
         $this->paginator = $paginator;
         $this->tagService = $tagService;
@@ -67,12 +62,13 @@ class PostService implements PostServiceInterface
     /**
      * Get paginated list.
      *
-     * @param int $page Page number
-     * @param User|null $author User
-     * @param array $filters Filters array
-     * @return PaginationInterface
+     * @param int       $page    Page number
+     * @param User|null $author  User
+     * @param array     $filters Filters array
+     *
+     * @return PaginationInterface Pagination Interface
      */
-    public function getPaginatedList(int $page, ?User $author = null, array $filters = []): PaginationInterface
+    public function getPaginatedList(int $page, User $author = null, array $filters = []): PaginationInterface
     {
         $filters = $this->prepareFilters($filters);
 
@@ -129,6 +125,4 @@ class PostService implements PostServiceInterface
 
         return $resultFilters;
     }
-
 }
-

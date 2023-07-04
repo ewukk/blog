@@ -50,6 +50,27 @@ class PostRepository extends ServiceEntityRepository
     }
 
     /**
+     * Count posts by category.
+     *
+     * @param Category $category Category
+     *
+     * @return int Number of tasks in category
+     *
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
+    public function countByCategory(Category $category): int
+    {
+        $qb = $this->getOrCreateQueryBuilder();
+
+        return $qb->select($qb->expr()->countDistinct('post.id'))
+            ->where('post.category = :category')
+            ->setParameter(':category', $category)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
      * Query all records.
      *
      * @param array<string, object> $filters Filters
@@ -62,13 +83,37 @@ class PostRepository extends ServiceEntityRepository
             ->select(
                 'partial post.{id, createdAt, updatedAt, title, content}',
                 'partial category.{id, title}',
+                'partial author.{id, email}',
                 'partial tags.{id, title}',
             )
             ->join('post.category', 'category')
+            ->join('post.author', 'author')
             ->leftJoin('post.tags', 'tags')
             ->orderBy('post.updatedAt', 'DESC');
 
         return $this->applyFiltersToList($queryBuilder, $filters);
+    }
+
+    /**
+     * Save entity.
+     *
+     * @param Post $post Post entity
+     */
+    public function save(Post $post): void
+    {
+        $this->_em->persist($post);
+        $this->_em->flush();
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Post $post Post entity
+     */
+    public function delete(Post $post): void
+    {
+        $this->_em->remove($post);
+        $this->_em->flush();
     }
 
     /**
@@ -95,28 +140,6 @@ class PostRepository extends ServiceEntityRepository
     }
 
     /**
-     * Save entity.
-     *
-     * @param Post $post Post entity
-     */
-    public function save(Post $post): void
-    {
-        $this->_em->persist($post);
-        $this->_em->flush();
-    }
-
-    /**
-     * Delete entity.
-     *
-     * @param Post $post Post entity
-     */
-    public function delete(Post $post): void
-    {
-        $this->_em->remove($post);
-        $this->_em->flush();
-    }
-
-    /**
      * Get or create new query builder.
      *
      * @param QueryBuilder|null $queryBuilder Query builder
@@ -127,26 +150,4 @@ class PostRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?? $this->createQueryBuilder('post');
     }
-
-    /**
-     * Count posts by category.
-     *
-     * @param Category $category Category
-     *
-     * @return int Number of tasks in category
-     *
-     * @throws NoResultException
-     * @throws NonUniqueResultException
-     */
-    public function countByCategory(Category $category): int
-    {
-        $qb = $this->getOrCreateQueryBuilder();
-
-        return $qb->select($qb->expr()->countDistinct('post.id'))
-            ->where('post.category = :category')
-            ->setParameter(':category', $category)
-            ->getQuery()
-            ->getSingleScalarResult();
-    }
-
 }

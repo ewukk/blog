@@ -21,11 +21,8 @@ class PostType extends AbstractType
 {
     /**
      * Tags data transformer.
-     *
-     * @var TagsDataTransformer
      */
     private TagsDataTransformer $tagsDataTransformer;
-
 
     /**
      * Constructor.
@@ -57,7 +54,8 @@ class PostType extends AbstractType
                 'label' => 'Title',
                 'required' => true,
                 'attr' => ['max_length' => 255],
-            ]);
+            ]
+        );
         $builder->add(
             'category',
             EntityType::class,
@@ -78,7 +76,8 @@ class PostType extends AbstractType
                 'label' => 'Content',
                 'required' => true,
                 'attr' => ['max_length' => 600],
-            ]);
+            ]
+        );
         $builder->add(
             'tags',
             TextType::class,

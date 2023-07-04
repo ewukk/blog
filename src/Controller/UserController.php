@@ -31,8 +31,6 @@ class UserController extends AbstractController
 
     /**
      * Translator.
-     *
-     * @var TranslatorInterface
      */
     private TranslatorInterface $translator;
 
@@ -79,7 +77,6 @@ class UserController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET'
     )]
-//    #[IsGranted('MANAGE')]
     public function show(user $user): Response
     {
         return $this->render('user/show.html.twig', ['user' => $user]);
@@ -96,50 +93,47 @@ class UserController extends AbstractController
     #[Route('/{id}/password', name: 'edit_password', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     public function passwordEdit(Request $request, User $user): Response
     {
-            $form = $this->createForm(
-                EditPasswordType::class,
-                $user,
-                [
-                    'method' => 'PUT',
-                    'action' => $this->generateUrl('edit_password', ['id' => $user->getId()]),
-                ]
-            );
-            $form->handleRequest($request);
+        $form = $this->createForm(
+            EditPasswordType::class,
+            $user,
+            [
+                'method' => 'PUT',
+                'action' => $this->generateUrl('edit_password', ['id' => $user->getId()]),
+            ]
+        );
+        $form->handleRequest($request);
 
-            if ($form->isSubmitted() && $form->isValid()) {
-                $this->userService->savePassword($user);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->userService->savePassword($user);
 
-                $this->addFlash(
-                    'success',
-                    $this->translator->trans('message.edited_successfully')
-                );
-
-                return $this->redirectToRoute('post_index');
-            }
-
-            return $this->render(
-                'user/password.html.twig',
-                [
-                    'form' => $form->createView(),
-                    'user' => $user,
-                ]
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.edited_successfully')
             );
 
+            return $this->redirectToRoute('post_index');
+        }
+
+        return $this->render(
+            'user/password.html.twig',
+            [
+                'form' => $form->createView(),
+                'user' => $user,
+            ]
+        );
     }
 
     /**
      * Edit action.
      *
-     * @param Request  $request  HTTP request
-     * @param User $user user entity
+     * @param Request $request HTTP request
+     * @param User    $user    user entity
      *
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'user_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
-//    #[IsGranted('EDIT')]
     public function edit(Request $request, User $user): Response
     {
-
         $form = $this->createForm(
             UserType::class,
             $user,
@@ -208,5 +202,4 @@ class UserController extends AbstractController
             ]
         );
     }
-
 }

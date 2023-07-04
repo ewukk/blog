@@ -39,9 +39,10 @@ class UserService implements UserServiceInterface
     /**
      * UserService constructor.
      *
-     * @param CommentServiceInterface $commentService Comment service
-     * @param UserRepository     $userRepository User repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param UserPasswordHasherInterface $passwordHasher Password hasher
+     * @param CommentServiceInterface     $commentService Comment service
+     * @param UserRepository              $userRepository User repository
+     * @param PaginatorInterface          $paginator      Paginator
      */
     public function __construct(UserPasswordHasherInterface $passwordHasher, CommentServiceInterface $commentService, UserRepository $userRepository, PaginatorInterface $paginator)
     {
@@ -71,7 +72,6 @@ class UserService implements UserServiceInterface
      * Save user.
      *
      * @param User $user User entity
-     *
      */
     public function save(User $user): void
     {
@@ -98,7 +98,6 @@ class UserService implements UserServiceInterface
      * Edit user.
      *
      * @param User $user User entity
-     *
      */
     public function edit(User $user): void
     {
@@ -109,7 +108,6 @@ class UserService implements UserServiceInterface
      * Remove user.
      *
      * @param User $user User entity
-     *
      */
     public function remove(User $user): void
     {
@@ -121,7 +119,7 @@ class UserService implements UserServiceInterface
      *
      * @param string $email Email
      *
-     * @return User|null
+     * @return User|null $email Email
      */
     public function findOneBy(string $email): ?User
     {

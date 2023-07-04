@@ -1,4 +1,7 @@
 <?php
+/**
+ * Tag entity.
+ */
 
 namespace App\Entity;
 
@@ -8,14 +11,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Class Tag.
+ */
 #[ORM\Entity(repositoryClass: TagRepository::class)]
 class Tag
 {
-
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -25,27 +28,25 @@ class Tag
     /**
      * Created at.
      *
-     * @var DateTimeImmutable|null
+     * @var \DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\Type(DateTimeImmutable::class)]
+    #[Assert\Type(\DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'create')]
     private ?\DateTimeInterface $createdAt;
 
     /**
      * Updated at.
      *
-     * @var DateTimeImmutable|null
+     * @var \DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\Type(DateTimeImmutable::class)]
+    #[Assert\Type(\DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'update')]
     private ?\DateTimeInterface $updatedAt;
 
     /**
      * Title.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
@@ -55,7 +56,6 @@ class Tag
 
     /**
      * Slug.
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 64)]
     #[Assert\Type('string')]
@@ -76,7 +76,7 @@ class Tag
     /**
      * Getter for created at.
      *
-     * @return DateTimeImmutable|null Created at
+     * @return \DateTimeImmutable|null Created at
      */
     public function getCreatedAt(): ?\DateTimeInterface
     {
@@ -86,7 +86,9 @@ class Tag
     /**
      * Setter for created at.
      *
-     * @param DateTimeImmutable $createdAt Created at
+     * @param \DateTimeImmutable $createdAt Created at
+     *
+     * @return Tag $createdAt Created at
      */
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
@@ -98,7 +100,7 @@ class Tag
     /**
      * Getter for updated at.
      *
-     * @return DateTimeImmutable|null Updated at
+     * @return \DateTimeImmutable|null Updated at
      */
     public function getUpdatedAt(): ?\DateTimeInterface
     {
@@ -108,7 +110,9 @@ class Tag
     /**
      * Setter for updated at.
      *
-     * @param DateTimeImmutable $updatedAt Updated at
+     * @param \DateTimeImmutable $updatedAt Updated at
+     *
+     * @return Tag Updated at
      */
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
@@ -131,6 +135,8 @@ class Tag
      * Setter for title.
      *
      * @param string $title Title
+     *
+     * @return Tag Title
      */
     public function setTitle(string $title): self
     {
@@ -153,7 +159,8 @@ class Tag
      * Setter for slug.
      *
      * @param string $slug Slug
-     * @return Tag
+     *
+     * @return Tag Slug
      */
     public function setSlug(string $slug): self
     {

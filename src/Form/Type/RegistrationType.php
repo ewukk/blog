@@ -52,12 +52,11 @@ class RegistrationType extends AbstractType
                     'constraints' => [
                         new Length(['min' => 6, 'max' => 191]),
                         new NotBlank(),
-                    ] ,
+                    ],
                     'first_options' => ['label' => 'Password'],
                     'second_options' => ['label' => 'Repeat password'],
                 ],
             );
-
     }
 
     /**

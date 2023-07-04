@@ -46,8 +46,6 @@ class UserVoter extends Voter
 
     /**
      * Security helper.
-     *
-     * @var Security
      */
     private Security $security;
 
@@ -72,7 +70,7 @@ class UserVoter extends Voter
     protected function supports(string $attribute, $subject): bool
     {
         return in_array($attribute, [self::EDIT, self::VIEW, self::DELETE, self::MANAGE])
-            && ($subject === null || $subject instanceof User);
+            && (null === $subject || $subject instanceof User);
     }
 
     /**
@@ -115,14 +113,14 @@ class UserVoter extends Voter
      */
     private function canEdit(User $user): bool
     {
-        if($user->getAuthor() === $user){
+        if ($user->getAuthor() === $user) {
             return true;
         }
-        if($this->security->isGranted('ROLE_ADMIN')){
+        if ($this->security->isGranted('ROLE_ADMIN')) {
             return true;
         }
-        return false;
 
+        return false;
     }
 
     /**
@@ -134,14 +132,14 @@ class UserVoter extends Voter
      */
     private function canView(User $user): bool
     {
-        if($user->getAuthor() === $user){
+        if ($user->getAuthor() === $user) {
             return true;
         }
-        if($this->security->isGranted('ROLE_ADMIN')){
+        if ($this->security->isGranted('ROLE_ADMIN')) {
             return true;
         }
-        return false;
 
+        return false;
     }
 
     /**
@@ -168,4 +166,3 @@ class UserVoter extends Voter
         return $this->security->isGranted('ROLE_ADMIN');
     }
 }
-

@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-
 /**
  * Class CommentController.
  */
@@ -36,6 +35,9 @@ class CommentController extends AbstractController
 
     /**
      * Constructor.
+     *
+     * @param CommentServiceInterface $commentService Comment service
+     * @param TranslatorInterface     $translator     Translator
      */
     public function __construct(CommentServiceInterface $commentService, TranslatorInterface $translator)
     {
@@ -47,8 +49,8 @@ class CommentController extends AbstractController
      * Index action.
      *
      * @param Request $request HTTP Request
-     * @return Response HTTP response
      *
+     * @return Response HTTP response
      */
     #[Route(name: 'comment_index', methods: 'GET')]
     public function index(Request $request): Response
@@ -83,11 +85,11 @@ class CommentController extends AbstractController
      * Create action.
      *
      * @param Request $request HTTP request
-     * @param Post $post Post entity
+     * @param Post    $post    Post entity
      *
      * @return Response HTTP response
      */
-    #[Route('/create/{id}', name: 'comment_create', methods: 'GET|POST', )]
+    #[Route('/create/{id}', name: 'comment_create', methods: 'GET|POST')]
     public function create(Request $request, Post $post): Response
     {
         $comment = new Comment();
@@ -111,14 +113,14 @@ class CommentController extends AbstractController
             return $this->redirectToRoute('comment_index');
         }
 
-        return $this->render('comment/create.html.twig',  ['form' => $form->createView()]);
+        return $this->render('comment/create.html.twig', ['form' => $form->createView()]);
     }
 
     /**
      * Edit action.
      *
      * @param Request $request HTTP request
-     * @param Comment    $comment    Comment entity
+     * @param Comment $comment Comment entity
      *
      * @return Response HTTP response
      */
@@ -160,7 +162,7 @@ class CommentController extends AbstractController
      * Delete action.
      *
      * @param Request $request HTTP request
-     * @param Comment    $comment    Comment entity
+     * @param Comment $comment Comment entity
      *
      * @return Response HTTP response
      */

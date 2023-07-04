@@ -29,8 +29,8 @@ class TagService implements TagServiceInterface
     /**
      * Constructor.
      *
-     * @param TagRepository     $tagRepository Tag repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param TagRepository      $tagRepository Tag repository
+     * @param PaginatorInterface $paginator     Paginator
      */
     public function __construct(TagRepository $tagRepository, PaginatorInterface $paginator)
     {
@@ -53,7 +53,6 @@ class TagService implements TagServiceInterface
             TagRepository::PAGINATOR_ITEMS_PER_PAGE
         );
     }
-
 
     /**
      * Save entity.
@@ -100,5 +99,4 @@ class TagService implements TagServiceInterface
     {
         return $this->tagRepository->findOneById($id);
     }
-
 }

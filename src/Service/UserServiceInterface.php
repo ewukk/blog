@@ -20,7 +20,7 @@ interface UserServiceInterface
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
-    public function  createPaginatedList(int $page): PaginationInterface;
+    public function createPaginatedList(int $page): PaginationInterface;
 
     /**
      * Save entity.
@@ -56,5 +56,4 @@ interface UserServiceInterface
      * @param string $email Email
      */
     public function findOneBy(string $email): ?User;
-
 }

@@ -26,8 +26,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -36,8 +34,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Email.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     #[Assert\NotBlank]
@@ -54,8 +50,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Password.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string')]
     #[Assert\NotBlank]
@@ -80,8 +74,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Author.
-     *
-     * @var User
      */
     private User $author;
 
@@ -188,7 +180,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Returning a salt is only needed, if you are not using a modern
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
      *
-     * @see UserInterface
+     * @return string|null UserInterface
+     *
+     * @see    UserInterface UserInterface
      */
     public function getSalt(): ?string
     {
@@ -202,14 +196,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function eraseCredentials(): void
     {
-
     }
 
     /**
      * Getter for comment.
      *
      * @return Collection<int, Comment>
-     *
      */
     public function getComments(): Collection
     {
@@ -230,6 +222,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Setter for author.
      *
      * @param User|null $author User
+     *
+     * @return User|null $author User
      */
     public function setAuthor(?User $author): self
     {

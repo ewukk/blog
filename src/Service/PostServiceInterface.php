@@ -17,7 +17,9 @@ interface PostServiceInterface
     /**
      * Get paginated list.
      *
-     * @param int $page Page number
+     * @param int   $page    Page number
+     * @param User  $author  Author
+     * @param array $filters Filters
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
@@ -36,7 +38,4 @@ interface PostServiceInterface
      * @param Post $post Task entity
      */
     public function delete(Post $post): void;
-
-
-
 }
